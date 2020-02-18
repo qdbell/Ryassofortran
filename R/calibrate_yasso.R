@@ -7,25 +7,25 @@
 #' @export
 #'
 #' @examples
-#' soilC <- run_yasso(par = sample_parameters, sdl = sample_data_run)
+#' soilC <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
 
-run_yasso <- function(par, sdl) {
+calibrate_yasso <- function(par, sdl) {
 
   # Typeset parameters
   par <- as.double(par)
 
   # Initialize, typeset an array for the results
   soilC <- matrix(rep(0, len = (sdl$nYears) * 5), nrow = sdl$nYears)
-  soilC <- rbind(sdl$init, soilC)
   soilC <- as.matrix(soilC)
 
   # Call the fortran model
   xx <- .Fortran(
-    "runyasso",
+    "calyasso",
     nYears = sdl$nYears,
     par = par,
     time = sdl$time,
     weather = sdl$weather,
+    init = sdl$init,
     litter = sdl$litter,
     wsize = sdl$wsize,
     leac = sdl$leac,
