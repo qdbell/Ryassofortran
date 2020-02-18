@@ -1,0 +1,16 @@
+Package: Ryassofortran
+Type: Package
+Title: Provides functionality for calling the YASSO fortran version from R
+Version: 0.1.0
+Author: Janne Pusa <janne.pusa@fmi.fi>
+Maintainer: Janne Pusa <janne.pusa@fmi.fi>
+Description: Allows the user to call the Fortran 90 version of the YASSO model 
+    from R. The Fortran version is two orders of magnitude faster than 
+    the version written in pure R.
+Depends: R (>= 3.6.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
+Suggests: 
+    testthat (>= 2.1.0)
