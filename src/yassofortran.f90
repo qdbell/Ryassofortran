@@ -1,6 +1,37 @@
 
-subroutine runyasso(nYears, par, time, weather, init, litter, wsize, leac, soilC)
+subroutine runyasso(nYears, par, time, weather, litter, wsize, leac, soilC)
 implicit none
+
+! Make predictions with the YASSO model
+
+! The initial value is passed as the first row of soilC, and the result
+! of the current run is used as the initial value in the next run.
+
+integer, intent(in) :: nYears
+real(kind=8), intent(in) :: par(35)
+real(kind=8), intent(in) :: time(nYears)
+real(kind=8), intent(in) :: weather(nYears, 3)
+real(kind=8), intent(in) :: litter(nYears, 5)
+real(kind=8), intent(in) :: wsize(nYears)
+real(kind=8), intent(in) :: leac(nYears)
+real(kind=8) :: sspred = 0.
+real(kind=8) :: soilC(nYears + 1, 5)
+integer :: year
+
+do year = 1, nYears
+    call mod5c(par, time(year), weather(year, :), soilC(year, :), litter(year, :), &
+        wsize(year), leac(year), soilC(year + 1, :), sspred)
+end do
+   
+end subroutine runyasso
+
+subroutine calyasso(nYears, par, time, weather, init, litter, wsize, leac, soilC)
+implicit none
+
+! Calibrate the YASSO model (using an internal FMI database)
+
+! The initial values are passed as an array, and each run has a given 
+! initial value.
 
 integer, intent(in) :: nYears
 real(kind=8), intent(in) :: par(35)
@@ -19,7 +50,7 @@ do year = 1, nYears
         wsize(year), leac(year), soilC(year, :), sspred)
 end do
    
-end subroutine runyasso
+end subroutine calyasso
 
 
 SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)

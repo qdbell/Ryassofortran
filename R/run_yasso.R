@@ -20,7 +20,7 @@ run_yasso <- function(par, sdl) {
 
   # Call the fortran model
   xx <- .Fortran(
-    "runyasso",
+    "calyasso",
     nYears = sdl$nYears,
     par = par,
     time = sdl$time,
