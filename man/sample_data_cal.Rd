@@ -3,7 +3,7 @@
 \docType{data}
 \name{sample_data_cal}
 \alias{sample_data_cal}
-\title{Sample data for calibrating YASSO.}
+\title{Sample data for calibrating YASSO}
 \format{A \code{tibble} with 2 cols and stuff:
 \describe{
 \item{x}{random normal data}

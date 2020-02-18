@@ -3,16 +3,37 @@
 \docType{data}
 \name{sample_data_run}
 \alias{sample_data_run}
-\title{Sample data for running YASSO.}
-\format{A \code{tibble} with 2 cols and stuff:
+\title{Sample data for running YASSO}
+\format{A list with input data. The data types have to be exactly as
+  described here for \code{run_yasso()} to function:
 \describe{
-\item{x}{random normal data}
-\item{y}{data that is normal and correlated with \code{x}}
+  \item{nYears}{\code{integer} Number of time steps to run the model over.}
+  \item{time}{\code{double} A vector with length of each time step in years.}
+  \item{weather}{\code{matrix} Weather data for each time step (mean
+    temperarure, temperature amplitude, precipitation sum).}
+  \item{init}{\code{double} A vector with initial soil carbon values (A, W,
+    E, N, H).}
+  \item{litter}{\code{matrix} Litter input to the model at each time step (A,
+    W, E, N, H).}
+  \item{wsize}{\code{double} A vector with the litter size for each time step.}
+  \item{leach}{\code{double} A vector with the leaching correction factor for
+    each time step.}
 }}
 \usage{
 sample_data_run
 }
 \description{
 Sample data for the \code{\link{run_yasso}} function.
+}
+\references{
+Tuomi, M., Laiho, R., Repo, A., & Liski. J. 2011. Wood
+  decomposition model for boreal forests. Ecological Modelling 222 (3):
+  709-718.
+  (\href{https://doi.org/10.1016/j.ecolmodel.2010.10.025}{EcolModel})
+
+  Järvenpää, M., Repo, A., Akujärvi, A., Kaasalainen, M. & Liski, J. Soil
+  carbon model Yasso15 - Bayesian calibration using worldwide litter
+  decomposition and carbon stock data. Manuscript in preparation.
+  (\href{https://en.ilmatieteenlaitos.fi/yasso-description}{FMI})
 }
 \keyword{datasets}

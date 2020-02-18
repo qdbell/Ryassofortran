@@ -1,6 +1,6 @@
-#' @title Sample data for calibrating YASSO.
+#' Sample data for calibrating YASSO
 #'
-#' @description Sample data for the \code{\link{calibrate_yasso}} function.
+#' Sample data for the \code{\link{calibrate_yasso}} function.
 #'
 #' @format A \code{tibble} with 2 cols and stuff:
 #' \describe{
