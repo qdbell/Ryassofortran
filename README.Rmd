@@ -18,37 +18,35 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of Ryassofortran is to provide functionality for calling the YASSO fortran version from R.
+The goal of Ryassofortran is to provide a convenient way to call the
+Fortran90-release of the soil carbon model YASSO15 in R. 
+
+The Fortran-release is on average two orders of magnitude faster than the
+R-release. Using the Fortran-release is superior for model calibration purposes.
+
+NOTE: This package is very early in development and is subject to changes.
+Furthermore, the package might be removed and included into a more advanced
+calibration package in the following months.
 
 ## Installation
 
-You can install the released version of Ryassofortran from [CRAN](https://CRAN.R-project.org) with:
+You can install the development version of Ryassofortran from GitHub with:
 
 ``` r
-install.packages("Ryassofortran")
+# install.packages("devtools")
+devtools::install_github("jpusa/Ryassofortran")
 ```
+
+On Windows systems the installation requires Rtools to be installed.
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example that shows you how to run the Fortran-version of YASSO using the package:
 
 ```{r example}
 library(Ryassofortran)
-## basic example code
+# Run the YASSO model with sample parameters and data
+soilC <- run_yasso(par = sample_parameters, sdl = sample_data_run)
+# Show the results
+soilC
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

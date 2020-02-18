@@ -1,4 +1,4 @@
-test_that("Simulated carbon is correct", {
+test_that("Simulated carbon is correct for calibration", {
 
   # Expected output
   real_out <- structure(c(19.2299264776091, 9.68424417943183, 6.27606543843457,
