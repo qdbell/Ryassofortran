@@ -2,20 +2,28 @@
 % Please edit documentation in R/run_yasso.R
 \name{run_yasso}
 \alias{run_yasso}
-\title{Call the Fortran version of YASSO15}
+\title{Run the YASSO model}
 \usage{
 run_yasso(par, sdl)
 }
 \arguments{
-\item{par}{model parameters}
+\item{par}{A numeric vector of YASSO parameters.}
 
-\item{sdl}{input data in a list}
+\item{sdl}{A list of input data. See \code{\link{sample_data_run}} for
+details.}
 }
 \value{
-Simulated soil carbon
+A matrix containing the initial soil carbon on the first row and
+  simulated soil carbon on the following rows.
 }
 \description{
-Call the Fortran version of YASSO15
+\code{run_yasso()} runs the YASSO model and returns simulated soil carbon.
+}
+\details{
+\code{run_yasso()} wraps the Fortran90-release of the soil carbon model
+YASSO15 into a simple R-function. The function is a convenient way to call
+the Fortran-release, which is two orders of magnitude faster than
+the R-release.
 }
 \examples{
 soilC <- run_yasso(par = sample_parameters, sdl = sample_data_run)

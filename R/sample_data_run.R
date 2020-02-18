@@ -1,6 +1,6 @@
-#' @title Sample input data
+#' @title Sample data for running YASSO.
 #'
-#' @description A list withsample data.
+#' @description Sample data for the \code{\link{run_yasso}} function.
 #'
 #' @format A \code{tibble} with 2 cols and stuff:
 #' \describe{

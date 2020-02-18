@@ -3,7 +3,7 @@
 \docType{data}
 \name{sample_data_run}
 \alias{sample_data_run}
-\title{Sample input data}
+\title{Sample data for running YASSO.}
 \format{A \code{tibble} with 2 cols and stuff:
 \describe{
 \item{x}{random normal data}
@@ -13,6 +13,6 @@
 sample_data_run
 }
 \description{
-A list withsample data.
+Sample data for the \code{\link{run_yasso}} function.
 }
 \keyword{datasets}

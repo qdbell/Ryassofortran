@@ -2,20 +2,29 @@
 % Please edit documentation in R/calibrate_yasso.R
 \name{calibrate_yasso}
 \alias{calibrate_yasso}
-\title{Call the Fortran version of YASSO15}
+\title{Calibrate the YASSO model}
 \usage{
 calibrate_yasso(par, sdl)
 }
 \arguments{
-\item{par}{model parameters}
+\item{par}{A numeric vector of YASSO parameters.}
 
-\item{sdl}{input data in a list}
+\item{sdl}{A list of input data. See \code{\link{sample_data_cal}} for
+details.}
 }
 \value{
-Simulated soil carbon
+A matrix containing simulated soil carbon. Each row corresponds to a
+  row in the array of initial states provided to the model.
 }
 \description{
-Call the Fortran version of YASSO15
+\code{calibrate_yasso()} runs the YASSO model in a way intended for model
+calibration. To simulate soil carbon, use \code{\link{run_yasso}} instead.
+}
+\details{
+\code{calibrate_yasso()} wraps the Fortran90-release of the soil carbon model
+YASSO15 into a simple R-function. The function is intended for calibrating
+the model using the data sets and methods applied at the Finnish
+Meteorological Institute.
 }
 \examples{
 soilC <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)

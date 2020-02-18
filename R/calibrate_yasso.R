@@ -1,9 +1,19 @@
-#' Call the Fortran version of YASSO15
+#' Calibrate the YASSO model
 #'
-#' @param par model parameters
-#' @param sdl input data in a list
+#' \code{calibrate_yasso()} runs the YASSO model in a way intended for model
+#' calibration. To simulate soil carbon, use \code{\link{run_yasso}} instead.
 #'
-#' @return Simulated soil carbon
+#' \code{calibrate_yasso()} wraps the Fortran90-release of the soil carbon model
+#' YASSO15 into a simple R-function. The function is intended for calibrating
+#' the model using the data sets and methods applied at the Finnish
+#' Meteorological Institute.
+#'
+#' @param par A numeric vector of YASSO parameters.
+#' @param sdl A list of input data. See \code{\link{sample_data_cal}} for
+#'   details.
+#'
+#' @return A matrix containing simulated soil carbon. Each row corresponds to a
+#'   row in the array of initial states provided to the model.
 #' @export
 #'
 #' @examples

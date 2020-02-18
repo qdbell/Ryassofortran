@@ -1,9 +1,18 @@
-#' Call the Fortran version of YASSO15
+#' Run the YASSO model
 #'
-#' @param par model parameters
-#' @param sdl input data in a list
+#' \code{run_yasso()} runs the YASSO model and returns simulated soil carbon.
 #'
-#' @return Simulated soil carbon
+#' \code{run_yasso()} wraps the Fortran90-release of the soil carbon model
+#' YASSO15 into a simple R-function. The function is a convenient way to call
+#' the Fortran-release, which is two orders of magnitude faster than
+#' the R-release.
+#'
+#' @param par A numeric vector of YASSO parameters.
+#' @param sdl A list of input data. See \code{\link{sample_data_run}} for
+#'   details.
+#'
+#' @return A matrix containing the initial soil carbon on the first row and
+#'   simulated soil carbon on the following rows.
 #' @export
 #'
 #' @examples
