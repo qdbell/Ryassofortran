@@ -22,7 +22,7 @@
 #' @export
 #'
 #' @examples
-#' soilC <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
+#' soil_c <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
 
 calibrate_yasso <- function(par, sdl) {
 
@@ -30,23 +30,23 @@ calibrate_yasso <- function(par, sdl) {
   par <- as.double(par)
 
   # Initialize, typeset an array for the results
-  soilC <- matrix(rep(0, len = (sdl$nYears) * 5), nrow = sdl$nYears)
-  soilC <- as.matrix(soilC)
+  soil_c <- matrix(rep(0, len = (sdl$n_runs) * 5), nrow = sdl$n_runs)
+  soil_c <- as.matrix(soil_c)
 
   # Call the fortran model
   xx <- .Fortran(
     "calyasso",
-    nYears = sdl$nYears,
+    n_runs = sdl$n_runs,
     par = par,
     time = sdl$time,
     weather = sdl$weather,
     init = sdl$init,
     litter = sdl$litter,
-    wsize = sdl$wsize,
+    size = sdl$size,
     leac = sdl$leac,
-    soilC = soilC
+    soil_c = soil_c
   )
 
   # Return simulated soil carbon
-  return(xx$soilC)
+  return(xx$soil_c)
 }
