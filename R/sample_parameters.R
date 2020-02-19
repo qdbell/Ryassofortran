@@ -2,7 +2,7 @@
 #'
 #' @description A sample parameter set for the YASSO model.
 #'
-#' @format A named numeric \code{vector} with the following contents:
+#' @format A named numeric vector with the following contents:
 #' \describe{
 #' \item{aA, aW, aE, aN}{Decomposition rate of each AWEN pool}
 #' \item{pXY}{Relative mass flow between each pair of pools X and Y}

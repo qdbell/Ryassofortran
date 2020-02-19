@@ -1,10 +1,40 @@
 #' Sample data for calibrating YASSO
 #'
-#' Sample data for the \code{\link{calibrate_yasso}} function.
+#' Sample data for the \code{\link{calibrate_yasso}} function. Identical to the
+#' data in \code{\link{sample_data_run}}, except for \code{init}, which is now a
+#' matrix instead of a vector.
 #'
-#' @format A \code{tibble} with 2 cols and stuff:
+#' @format A list with input data. The data types have to be exactly as
+#'   described here for \code{calibrate_yasso()} to function:
 #' \describe{
-#' \item{x}{random normal data}
-#' \item{y}{data that is normal and correlated with \code{x}}
+#'   \item{nYears}{\code{integer} Number of time steps to run the model over.}
+#'   \item{time}{\code{double} A vector with length of each time step in years.}
+#'   \item{weather}{\code{matrix} Weather data for each time step (mean
+#'     temperarure, temperature amplitude, precipitation sum).}
+#'   \item{init}{\code{matrix} Initial soil carbon values for each
+#'     time step (A, W, E, N, H).}
+#'   \item{litter}{\code{matrix} Litter input to the model at each time step (A,
+#'     W, E, N, H).}
+#'   \item{wsize}{\code{double} A vector with litter size for each time step.}
+#'   \item{leach}{\code{double} A vector with leaching correction factor for
+#'     each time step.}
 #' }
+#'
+#' @references
+#'   Järvenpää, M., Repo, A., Akujärvi, A., Kaasalainen, M. & Liski, J. Soil
+#'   carbon model Yasso15 - Bayesian calibration using worldwide litter
+#'   decomposition and carbon stock data. Manuscript in preparation.
+#'   (\href{https://en.ilmatieteenlaitos.fi/yasso-description}{FMI})
+#'
+#'   Tuomi, M., Laiho, R., Repo, A., & Liski. J. 2011. Wood
+#'   decomposition model for boreal forests. Ecological Modelling 222 (3):
+#'   709-718.
+#'   (\href{https://doi.org/10.1016/j.ecolmodel.2010.10.025}{EcolModel})
+#'
+#'   Tuomi, M., Thum, T., Järvinen, H., Fronzek, S., Berg, B., Harmon, M.,
+#'   Trofymow, J.A., Sevanto, S. & Liski, J. 2009. Leaf litter decomposition -
+#'   Estimates of global variability based on Yasso07 model. Ecological
+#'   Modelling 220 (23):3362-3371.
+#'   (\href{doi:10.1016/j.ecolmodel.2009.05.016}{EcolModel})
+#'
 "sample_data_cal"

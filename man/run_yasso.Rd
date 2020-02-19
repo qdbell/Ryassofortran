@@ -22,8 +22,12 @@ A matrix containing the initial soil carbon on the first row and
 \details{
 \code{run_yasso()} wraps the Fortran90-release of the soil carbon model
 YASSO15 into a simple R-function. The function is a convenient way to call
-the Fortran-release, which is two orders of magnitude faster than
-the R-release.
+the Fortran-release.
+
+The function provides YASSO with the initial soil carbon values in the vector
+\code{sdl$init} and runs the model one time step at a time. The simulated
+carbon of the current time step is used as the initial value of the next time
+step. The model runs until it has looped over all the time steps.
 }
 \examples{
 soilC <- run_yasso(par = sample_parameters, sdl = sample_data_run)

@@ -14,7 +14,7 @@ details.}
 }
 \value{
 A matrix containing simulated soil carbon. Each row corresponds to a
-  row in the array of initial states provided to the model.
+  row in the matrix of initial states provided to the model.
 }
 \description{
 \code{calibrate_yasso()} runs the YASSO model in a way intended for model
@@ -25,6 +25,11 @@ calibration. To simulate soil carbon, use \code{\link{run_yasso}} instead.
 YASSO15 into a simple R-function. The function is intended for calibrating
 the model using the data sets and methods applied at the Finnish
 Meteorological Institute.
+
+The function provides YASSO with the initial soil carbon values in the matrix
+\code{sdl$init} and runs the model one time step at a time. The initial value
+of each time step is read from the matrix. The model runs until it has looped
+over all the time steps.
 }
 \examples{
 soilC <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)

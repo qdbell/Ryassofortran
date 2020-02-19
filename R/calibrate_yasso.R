@@ -8,12 +8,17 @@
 #' the model using the data sets and methods applied at the Finnish
 #' Meteorological Institute.
 #'
+#' The function provides YASSO with the initial soil carbon values in the matrix
+#' \code{sdl$init} and runs the model one time step at a time. The initial value
+#' of each time step is read from the matrix. The model runs until it has looped
+#' over all the time steps.
+#'
 #' @param par A numeric vector of YASSO parameters.
 #' @param sdl A list of input data. See \code{\link{sample_data_cal}} for
 #'   details.
 #'
 #' @return A matrix containing simulated soil carbon. Each row corresponds to a
-#'   row in the array of initial states provided to the model.
+#'   row in the matrix of initial states provided to the model.
 #' @export
 #'
 #' @examples

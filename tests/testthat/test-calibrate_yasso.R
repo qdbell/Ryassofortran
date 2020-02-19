@@ -1,20 +1,18 @@
 test_that("Simulated carbon is correct for calibration", {
 
   # Expected output
-  real_out <- structure(c(19.2299264776091, 9.68424417943183, 6.27606543843457,
-                          4.51242110632996, 2.00021165581069, 0.992415210455358,
-                          0.637434842011072, 0.456470249478737, 6.26410347287329,
-                          2.1499170711192, 0.931516502402896,0.501258493484273,
-                          23.5613025463883, 21.5901887968128, 17.5472099839851,
-                          13.7118900978109, 0.963775827011475, 1.34602617270601,
-                          1.56155418493683, 1.71240610163779), .Dim = 4:5)
+  real_out <- structure(c(19.22993, 9.68424, 6.27607, 4.51242, 2.00021, 0.99242,
+                          0.63743, 0.45647, 6.2641, 2.14992, 0.93152, 0.50126,
+                          23.5613, 21.59019, 17.54721, 13.71189, 0.96378,
+                          1.34603, 1.56155, 1.71241),
+                        .Dim = 4:5)
 
   # Simulated output
   simulated_out <- calibrate_yasso(sample_parameters, sample_data_cal)
 
   # Round to a sensible precision
-  real_out <- round(real_out, 4)
-  simulated_out <- round(simulated_out, 4)
+  real_out <- round(real_out, 3)
+  simulated_out <- round(simulated_out, 3)
 
   # Compare
   expect_equal(simulated_out, real_out)
