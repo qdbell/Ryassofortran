@@ -7,6 +7,8 @@
 
 [![Travis build
 status](https://travis-ci.org/jpusa/Ryassofortran.svg?branch=master)](https://travis-ci.org/jpusa/Ryassofortran)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/jpusa/Ryassofortran?branch=master&svg=true)](https://ci.appveyor.com/project/jpusa/ryassofortran)
 <!-- badges: end -->
 
 The goal of Ryassofortran is to provide a convenient way to call the
