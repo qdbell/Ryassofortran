@@ -47,20 +47,33 @@ On Windows systems the installation requires Rtools to be installed.
 
 Simulate soil carbon with YASSO:
 
-```{r example}
+```{r}
 library(Ryassofortran)
+```
+
+```{r}
+# The initial carbon is given as a vector (A, W, E, N, H)
+sample_data_run$init
+```
+
+```{r example}
 # Run the YASSO model with sample parameters and data
 soil_c <- run_yasso(par = sample_parameters, sdl = sample_data_run)
 # Show the results
-soil_c
+round(soil_c, 3)
 ```
 
-Run the YASSO model in a way intended for model calibration:
+Run YASSO in a way intended for calibration:
+
+```{r}
+# The initial carbon is given as a matrix
+sample_data_cal$init
+```
 
 ```{r}
 # Run in calibration mode
 soil_c_cal <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
 # Show the results
-soil_c_cal
+round(soil_c_cal, 3)
 ```
 
