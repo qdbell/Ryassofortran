@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/jpusa/Ryassofortran.svg?branch=master)](https://travis-ci.org/jpusa/Ryassofortran)
 <!-- badges: end -->
 
 The goal of Ryassofortran is to provide a convenient way to call the
