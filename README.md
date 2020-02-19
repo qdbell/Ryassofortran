@@ -15,7 +15,7 @@ The goal of Ryassofortran is to provide a convenient way to call the
 Fortran90-release of the soil carbon model YASSO15 in R.
 
 The Fortran-release of YASSO is up to two orders of magnitude faster
-than the R-release. The absolute speed increase is not always
+than the R-release. The absolute speed increase is not necessarily
 significant while simulating soil carbon, but for model calibration
 purposes the Fortran-release is superior.
 
@@ -35,10 +35,9 @@ devtools::install_github("jpusa/Ryassofortran")
 
 On Windows systems the installation requires Rtools to be installed.
 
-## Example
+## Examples
 
-There are basic examples that show you how to run the Fortran-version of
-YASSO using the package:
+Simulate soil carbon with YASSO:
 
 ``` r
 library(Ryassofortran)
@@ -53,6 +52,8 @@ soilC
 #> [4,]  2.5232739  0.25471258  0.22392117  7.971798 1.9131830
 #> [5,]  0.8560755  0.08639225  0.07286388  2.717212 2.0906141
 ```
+
+Run the YASSO model in a way intended for model calibration:
 
 ``` r
 # Run in calibration mode
