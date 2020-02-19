@@ -30,5 +30,5 @@ carbon of the current time step is used as the initial value of the next time
 step. The model runs until it has looped over all the time steps.
 }
 \examples{
-soilC <- run_yasso(par = sample_parameters, sdl = sample_data_run)
+soil_c <- run_yasso(par = sample_parameters, sdl = sample_data_run)
 }

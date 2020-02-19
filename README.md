@@ -42,9 +42,9 @@ Simulate soil carbon with YASSO:
 ``` r
 library(Ryassofortran)
 # Run the YASSO model with sample parameters and data
-soilC <- run_yasso(par = sample_parameters, sdl = sample_data_run)
+soil_c <- run_yasso(par = sample_parameters, sdl = sample_data_run)
 # Show the results
-soilC
+soil_c
 #>            [,1]        [,2]        [,3]      [,4]      [,5]
 #> [1,] 40.5000000 30.50000000 20.30000000 10.300000 0.0000000
 #> [2,] 19.2299265  2.00021166  6.26410347 23.561303 0.9637758
@@ -57,9 +57,9 @@ Run the YASSO model in a way intended for model calibration:
 
 ``` r
 # Run in calibration mode
-soilC_cal <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
+soil_c_cal <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
 # Show the results
-soilC_cal
+soil_c_cal
 #>           [,1]      [,2]      [,3]     [,4]      [,5]
 #> [1,] 19.229926 2.0002117 6.2641035 23.56130 0.9637758
 #> [2,]  9.684244 0.9924152 2.1499171 21.59019 1.3460262

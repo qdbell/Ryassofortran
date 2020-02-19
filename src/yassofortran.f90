@@ -1,53 +1,53 @@
 
-subroutine runyasso(nYears, par, time, weather, litter, wsize, leac, soilC)
+subroutine runyasso(n_runs, par, time, weather, litter, size, leac, soil_c)
 implicit none
 
-! Make predictions with the YASSO model
+! Wrapper - make predictions with the YASSO model
 
-! The initial value is passed as the first row of soilC, and the result
+! The initial value is passed as the first row of soil_c, and the result
 ! of the current run is used as the initial value in the next run.
 
-integer, intent(in) :: nYears
+integer, intent(in) :: n_runs
 real(kind=8), intent(in) :: par(35)
-real(kind=8), intent(in) :: time(nYears)
-real(kind=8), intent(in) :: weather(nYears, 3)
-real(kind=8), intent(in) :: litter(nYears, 5)
-real(kind=8), intent(in) :: wsize(nYears)
-real(kind=8), intent(in) :: leac(nYears)
+real(kind=8), intent(in) :: time(n_runs)
+real(kind=8), intent(in) :: weather(n_runs, 3)
+real(kind=8), intent(in) :: litter(n_runs, 5)
+real(kind=8), intent(in) :: size(n_runs)
+real(kind=8), intent(in) :: leac(n_runs)
 real(kind=8) :: sspred = 0.
-real(kind=8) :: soilC(nYears + 1, 5)
+real(kind=8) :: soil_c(n_runs + 1, 5)
 integer :: year
 
-do year = 1, nYears
-    call mod5c(par, time(year), weather(year, :), soilC(year, :), litter(year, :), &
-        wsize(year), leac(year), soilC(year + 1, :), sspred)
+do year = 1, n_runs
+    call mod5c(par, time(year), weather(year, :), soil_c(year, :), litter(year, :), &
+        size(year), leac(year), soil_c(year + 1, :), sspred)
 end do
    
 end subroutine runyasso
 
-subroutine calyasso(nYears, par, time, weather, init, litter, wsize, leac, soilC)
+subroutine calyasso(n_runs, par, time, weather, init, litter, size, leac, soil_c)
 implicit none
 
-! Calibrate the YASSO model (using an internal FMI database)
+! Wrapper - use to calibrate the YASSO model (using FMI methods and data)
 
 ! The initial values are passed as an array, and each run has a given 
 ! initial value.
 
-integer, intent(in) :: nYears
+integer, intent(in) :: n_runs
 real(kind=8), intent(in) :: par(35)
-real(kind=8), intent(in) :: time(nYears)
-real(kind=8), intent(in) :: weather(nYears, 3)
-real(kind=8), intent(in) :: init(nYears, 5)
-real(kind=8), intent(in) :: litter(nYears, 5)
-real(kind=8), intent(in) :: wsize(nYears)
-real(kind=8), intent(in) :: leac(nYears)
+real(kind=8), intent(in) :: time(n_runs)
+real(kind=8), intent(in) :: weather(n_runs, 3)
+real(kind=8), intent(in) :: init(n_runs, 5)
+real(kind=8), intent(in) :: litter(n_runs, 5)
+real(kind=8), intent(in) :: size(n_runs)
+real(kind=8), intent(in) :: leac(n_runs)
 real(kind=8) :: sspred = 0.
-real(kind=8) :: soilC(nYears, 5)
+real(kind=8) :: soil_c(n_runs, 5)
 integer :: year
 
-do year = 1, nYears
+do year = 1, n_runs
     call mod5c(par, time(year), weather(year, :), init(year, :), litter(year, :), &
-        wsize(year), leac(year), soilC(year, :), sspred)
+        size(year), leac(year), soil_c(year, :), sspred)
 end do
    
 end subroutine calyasso

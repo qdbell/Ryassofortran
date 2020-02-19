@@ -7,7 +7,7 @@
 \format{A list with input data. The data types have to be exactly as
   described here for \code{calibrate_yasso()} to function:
 \describe{
-  \item{nYears}{\code{integer} Number of time steps to run the model over.}
+  \item{n_runs}{\code{integer} Number of time steps to run the model over.}
   \item{time}{\code{double} A vector with length of each time step in years.}
   \item{weather}{\code{matrix} Weather data for each time step (mean
     temperarure, temperature amplitude, precipitation sum).}
@@ -15,7 +15,7 @@
     time step (A, W, E, N, H).}
   \item{litter}{\code{matrix} Litter input to the model at each time step (A,
     W, E, N, H).}
-  \item{wsize}{\code{double} A vector with litter size for each time step.}
+  \item{size}{\code{double} A vector with litter size for each time step.}
   \item{leach}{\code{double} A vector with leaching correction factor for
     each time step.}
 }}

@@ -32,5 +32,5 @@ of each time step is read from the matrix. The model runs until it has looped
 over all the time steps.
 }
 \examples{
-soilC <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
+soil_c <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
 }

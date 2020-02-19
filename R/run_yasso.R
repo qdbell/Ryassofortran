@@ -20,7 +20,7 @@
 #' @export
 #'
 #' @examples
-#' soilC <- run_yasso(par = sample_parameters, sdl = sample_data_run)
+#' soil_c <- run_yasso(par = sample_parameters, sdl = sample_data_run)
 
 run_yasso <- function(par, sdl) {
 
@@ -28,23 +28,23 @@ run_yasso <- function(par, sdl) {
   par <- as.double(par)
 
   # Initialize, typeset an array for the results
-  soilC <- matrix(rep(0, len = (sdl$nYears) * 5), nrow = sdl$nYears)
-  soilC <- rbind(sdl$init, soilC)
-  soilC <- as.matrix(soilC)
+  soil_c <- matrix(rep(0, len = (sdl$n_runs) * 5), nrow = sdl$n_runs)
+  soil_c <- rbind(sdl$init, soil_c)
+  soil_c <- as.matrix(soil_c)
 
   # Call the fortran model
   xx <- .Fortran(
     "runyasso",
-    nYears = sdl$nYears,
+    n_runs = sdl$n_runs,
     par = par,
     time = sdl$time,
     weather = sdl$weather,
     litter = sdl$litter,
-    wsize = sdl$wsize,
+    size = sdl$size,
     leac = sdl$leac,
-    soilC = soilC
+    soil_c = soil_c
   )
 
   # Return simulated soil carbon
-  return(xx$soilC)
+  return(xx$soil_c)
 }
