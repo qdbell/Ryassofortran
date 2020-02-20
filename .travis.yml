@@ -11,3 +11,8 @@ os:
 r:
   - oldrel
   - release
+  - devel
+
+jobs:
+  allow_failures:
+    - r: devel
