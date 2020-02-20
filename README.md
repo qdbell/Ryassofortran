@@ -7,8 +7,7 @@
 
 [![Travis build
 status](https://travis-ci.org/jpusa/Ryassofortran.svg?branch=master)](https://travis-ci.org/jpusa/Ryassofortran)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/jpusa/Ryassofortran?branch=master&svg=true)](https://ci.appveyor.com/project/jpusa/ryassofortran)
+<!-- [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jpusa/Ryassofortran?branch=master&svg=true)](https://ci.appveyor.com/project/jpusa/ryassofortran) -->
 <!-- badges: end -->
 
 The goal of Ryassofortran is to provide a convenient way to call the
@@ -51,7 +50,17 @@ sample_data_run$init
 
 ``` r
 # Run the YASSO model with sample parameters and data
-soil_c <- run_yasso(par = sample_parameters, sdl = sample_data_run)
+soil_c <- run_yasso(
+  par = sample_parameters,
+  n_runs = sample_data_run$n_runs,
+  time = sample_data_run$time,
+  weather = sample_data_run$weather,
+  init = sample_data_run$init,
+  litter = sample_data_run$litter,
+  size = sample_data_run$size,
+  leac = sample_data_run$leac
+)
+
 # Show the results
 round(soil_c, 3)
 #>        [,1]   [,2]   [,3]   [,4]  [,5]
@@ -76,7 +85,17 @@ sample_data_cal$init
 
 ``` r
 # Run in calibration mode
-soil_c_cal <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
+soil_c_cal <- calibrate_yasso(
+  par = sample_parameters,
+  n_runs = sample_data_cal$n_runs,
+  time = sample_data_cal$time,
+  weather = sample_data_cal$weather,
+  init = sample_data_cal$init,
+  litter = sample_data_cal$litter,
+  size = sample_data_cal$size,
+  leac = sample_data_cal$leac
+)
+
 # Show the results
 round(soil_c_cal, 3)
 #>        [,1]  [,2]  [,3]   [,4]  [,5]

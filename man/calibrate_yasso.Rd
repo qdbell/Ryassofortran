@@ -4,13 +4,24 @@
 \alias{calibrate_yasso}
 \title{Calibrate the YASSO model}
 \usage{
-calibrate_yasso(par, sdl)
+calibrate_yasso(par, n_runs, time, weather, init, litter, size, leac)
 }
 \arguments{
 \item{par}{A numeric vector of YASSO parameters.}
 
-\item{sdl}{A list of input data. See \code{\link{sample_data_cal}} for
-details.}
+\item{n_runs}{Input data. Refer to \code{\link{sample_data_run}} for now.}
+
+\item{time}{-||-}
+
+\item{weather}{-||-}
+
+\item{init}{-||-}
+
+\item{litter}{-||-}
+
+\item{size}{-||-}
+
+\item{leac}{-||-}
 }
 \value{
 A matrix containing simulated soil carbon. Each row corresponds to a
@@ -27,10 +38,19 @@ the model using the data sets and methods applied at the Finnish
 Meteorological Institute.
 
 The function provides YASSO with the initial soil carbon values in the matrix
-\code{sdl$init} and runs the model one time step at a time. The initial value
+\code{init} and runs the model one time step at a time. The initial value
 of each time step is read from the matrix. The model runs until it has looped
 over all the time steps.
 }
 \examples{
-soil_c <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
+soil_c <- calibrate_yasso(
+ par = sample_parameters,
+ n_runs = sample_data_cal$n_runs,
+ time = sample_data_cal$time,
+ weather = sample_data_cal$weather,
+ init = sample_data_cal$init,
+ litter = sample_data_cal$litter,
+ size = sample_data_cal$size,
+ leac = sample_data_cal$leac
+)
 }

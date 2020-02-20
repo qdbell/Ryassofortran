@@ -1,5 +1,5 @@
 
-subroutine runyasso(n_runs, par, time, weather, litter, size, leac, soil_c)
+subroutine runyasso(par, n_runs, time, weather, litter, size, leac, soil_c)
 implicit none
 
 ! Wrapper - make predictions with the YASSO model
@@ -7,8 +7,8 @@ implicit none
 ! The initial value is passed as the first row of soil_c, and the result
 ! of the current run is used as the initial value in the next run.
 
-integer, intent(in) :: n_runs
 real(kind=8), intent(in) :: par(35)
+integer, intent(in) :: n_runs
 real(kind=8), intent(in) :: time(n_runs)
 real(kind=8), intent(in) :: weather(n_runs, 3)
 real(kind=8), intent(in) :: litter(n_runs, 5)
@@ -25,7 +25,7 @@ end do
    
 end subroutine runyasso
 
-subroutine calyasso(n_runs, par, time, weather, init, litter, size, leac, soil_c)
+subroutine calyasso(par, n_runs, time, weather, init, litter, size, leac, soil_c)
 implicit none
 
 ! Wrapper - use to calibrate the YASSO model (using FMI methods and data)
@@ -33,8 +33,8 @@ implicit none
 ! The initial values are passed as an array, and each run has a given 
 ! initial value.
 
-integer, intent(in) :: n_runs
 real(kind=8), intent(in) :: par(35)
+integer, intent(in) :: n_runs
 real(kind=8), intent(in) :: time(n_runs)
 real(kind=8), intent(in) :: weather(n_runs, 3)
 real(kind=8), intent(in) :: init(n_runs, 5)
