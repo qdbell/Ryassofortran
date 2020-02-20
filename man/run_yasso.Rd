@@ -4,13 +4,24 @@
 \alias{run_yasso}
 \title{Run the YASSO model}
 \usage{
-run_yasso(par, sdl)
+run_yasso(par, n_runs, time, weather, init, litter, size, leac)
 }
 \arguments{
 \item{par}{A numeric vector of YASSO parameters.}
 
-\item{sdl}{A list of input data. See \code{\link{sample_data_run}} for
-details.}
+\item{n_runs}{Input data. Refer to \code{\link{sample_data_run}} for now.}
+
+\item{time}{-||-}
+
+\item{weather}{-||-}
+
+\item{init}{-||-}
+
+\item{litter}{-||-}
+
+\item{size}{-||-}
+
+\item{leac}{-||-}
 }
 \value{
 A matrix containing the initial soil carbon on the first row and
@@ -25,10 +36,19 @@ YASSO15 into a simple R-function. The function is a convenient way to call
 the Fortran-release.
 
 The function provides YASSO with the initial soil carbon values in the vector
-\code{sdl$init} and runs the model one time step at a time. The simulated
+\code{init} and runs the model one time step at a time. The simulated
 carbon of the current time step is used as the initial value of the next time
 step. The model runs until it has looped over all the time steps.
 }
 \examples{
-soil_c <- run_yasso(par = sample_parameters, sdl = sample_data_run)
+soil_c <- run_yasso(
+ par = sample_parameters,
+ n_runs = sample_data_run$n_runs,
+ time = sample_data_run$time,
+ weather = sample_data_run$weather,
+ init = sample_data_run$init,
+ litter = sample_data_run$litter,
+ size = sample_data_run$size,
+ leac = sample_data_run$leac
+)
 }

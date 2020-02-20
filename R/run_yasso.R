@@ -7,41 +7,55 @@
 #' the Fortran-release.
 #'
 #' The function provides YASSO with the initial soil carbon values in the vector
-#' \code{sdl$init} and runs the model one time step at a time. The simulated
+#' \code{init} and runs the model one time step at a time. The simulated
 #' carbon of the current time step is used as the initial value of the next time
 #' step. The model runs until it has looped over all the time steps.
 #'
 #' @param par A numeric vector of YASSO parameters.
-#' @param sdl A list of input data. See \code{\link{sample_data_run}} for
-#'   details.
+#' @param n_runs Input data. Refer to \code{\link{sample_data_run}} for now.
+#' @param time -||-
+#' @param weather -||-
+#' @param init -||-
+#' @param litter -||-
+#' @param size -||-
+#' @param leac -||-
 #'
 #' @return A matrix containing the initial soil carbon on the first row and
 #'   simulated soil carbon on the following rows.
 #' @export
 #'
 #' @examples
-#' soil_c <- run_yasso(par = sample_parameters, sdl = sample_data_run)
+#' soil_c <- run_yasso(
+#'  par = sample_parameters,
+#'  n_runs = sample_data_run$n_runs,
+#'  time = sample_data_run$time,
+#'  weather = sample_data_run$weather,
+#'  init = sample_data_run$init,
+#'  litter = sample_data_run$litter,
+#'  size = sample_data_run$size,
+#'  leac = sample_data_run$leac
+#' )
 
-run_yasso <- function(par, sdl) {
+run_yasso <- function(par, n_runs, time, weather, init, litter, size, leac) {
 
   # Typeset parameters
   par <- as.double(par)
 
   # Initialize, typeset an array for the results
-  soil_c <- matrix(rep(0, len = (sdl$n_runs) * 5), nrow = sdl$n_runs)
-  soil_c <- rbind(sdl$init, soil_c)
-  soil_c <- as.matrix(soil_c)
+  soil_c <- matrix(rep(0, len = (n_runs) * 5), nrow = n_runs)
+  soil_c <- rbind(init, soil_c)
+  soil_c <- unname(as.matrix(soil_c))
 
   # Call the fortran model
   xx <- .Fortran(
     "runyasso",
-    n_runs = sdl$n_runs,
     par = par,
-    time = sdl$time,
-    weather = sdl$weather,
-    litter = sdl$litter,
-    size = sdl$size,
-    leac = sdl$leac,
+    n_runs = n_runs,
+    time = time,
+    weather = weather,
+    litter = litter,
+    size = size,
+    leac = leac,
     soil_c = soil_c
   )
 

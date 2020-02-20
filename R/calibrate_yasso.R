@@ -9,41 +9,55 @@
 #' Meteorological Institute.
 #'
 #' The function provides YASSO with the initial soil carbon values in the matrix
-#' \code{sdl$init} and runs the model one time step at a time. The initial value
+#' \code{init} and runs the model one time step at a time. The initial value
 #' of each time step is read from the matrix. The model runs until it has looped
 #' over all the time steps.
 #'
 #' @param par A numeric vector of YASSO parameters.
-#' @param sdl A list of input data. See \code{\link{sample_data_cal}} for
-#'   details.
+#' @param n_runs Input data. Refer to \code{\link{sample_data_run}} for now.
+#' @param time -||-
+#' @param weather -||-
+#' @param init -||-
+#' @param litter -||-
+#' @param size -||-
+#' @param leac -||-
 #'
 #' @return A matrix containing simulated soil carbon. Each row corresponds to a
 #'   row in the matrix of initial states provided to the model.
 #' @export
 #'
 #' @examples
-#' soil_c <- calibrate_yasso(par = sample_parameters, sdl = sample_data_cal)
+#' soil_c <- calibrate_yasso(
+#'  par = sample_parameters,
+#'  n_runs = sample_data_cal$n_runs,
+#'  time = sample_data_cal$time,
+#'  weather = sample_data_cal$weather,
+#'  init = sample_data_cal$init,
+#'  litter = sample_data_cal$litter,
+#'  size = sample_data_cal$size,
+#'  leac = sample_data_cal$leac
+#' )
 
-calibrate_yasso <- function(par, sdl) {
+calibrate_yasso <- function(par, n_runs, time, weather, init, litter, size, leac) {
 
   # Typeset parameters
   par <- as.double(par)
 
   # Initialize, typeset an array for the results
-  soil_c <- matrix(rep(0, len = (sdl$n_runs) * 5), nrow = sdl$n_runs)
+  soil_c <- matrix(rep(0, len = (n_runs) * 5), nrow = n_runs)
   soil_c <- as.matrix(soil_c)
 
   # Call the fortran model
   xx <- .Fortran(
     "calyasso",
-    n_runs = sdl$n_runs,
     par = par,
-    time = sdl$time,
-    weather = sdl$weather,
-    init = sdl$init,
-    litter = sdl$litter,
-    size = sdl$size,
-    leac = sdl$leac,
+    n_runs = n_runs,
+    time = time,
+    weather = weather,
+    init = init,
+    litter = litter,
+    size = size,
+    leac = leac,
     soil_c = soil_c
   )
 
