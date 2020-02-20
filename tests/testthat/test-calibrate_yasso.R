@@ -1,10 +1,11 @@
 test_that("Simulated carbon is correct for calibration", {
 
   # Expected output
-  real_out <- matrix(data = c(19.22993, 9.68424, 6.27607, 4.51242, 2.00021,
-                              0.99242, 0.63743, 0.45647, 6.2641, 2.14992,
-                              0.93152, 0.50126, 23.5613, 21.59019, 17.54721,
-                              13.71189, 0.96378, 1.34603, 1.56155, 1.71241),
+  real_out <- matrix(data = c(33.31233, 22.00653, 15.3988, 11.24946, 3.50439,
+                              2.30436, 1.60405, 1.16489, 12.61624, 7.86392,
+                              5.04911, 3.2777, 20.79977, 24.73376, 26.20992,
+                              26.36682, 0.53731, 0.82382, 1.01263, 1.15024
+                              ),
                      nrow = 4, ncol = 5)
 
   # Simulated output
@@ -24,5 +25,5 @@ test_that("Simulated carbon is correct for calibration", {
   simulated_out <- round(simulated_out, 3)
 
   # Compare
-  testthat::expect_equal(simulated_out, real_out)
+  expect_equal(simulated_out, real_out)
 })

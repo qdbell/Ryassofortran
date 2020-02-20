@@ -10,7 +10,7 @@
 #'   \item{n_runs}{\code{integer} Number of time steps to run the model over.}
 #'   \item{time}{\code{double} A vector with length of each time step in years.}
 #'   \item{weather}{\code{matrix} Weather data for each time step (mean
-#'     temperarure, temperature amplitude, precipitation sum).}
+#'     temperarure, precipitation sum, temperature amplitude).}
 #'   \item{init}{\code{matrix} Initial soil carbon values for each
 #'     time step (A, W, E, N, H).}
 #'   \item{litter}{\code{matrix} Litter input to the model at each time step (A,

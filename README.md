@@ -7,7 +7,8 @@
 
 [![Travis build
 status](https://travis-ci.org/jpusa/Ryassofortran.svg?branch=master)](https://travis-ci.org/jpusa/Ryassofortran)
-<!-- [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jpusa/Ryassofortran?branch=master&svg=true)](https://ci.appveyor.com/project/jpusa/ryassofortran) -->
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/jpusa/Ryassofortran?branch=master&svg=true)](https://ci.appveyor.com/project/jpusa/ryassofortran)
 <!-- badges: end -->
 
 The goal of Ryassofortran is to provide a convenient way to call the
@@ -65,10 +66,10 @@ soil_c <- run_yasso(
 round(soil_c, 3)
 #>        [,1]   [,2]   [,3]   [,4]  [,5]
 #> [1,] 40.500 30.500 20.300 10.300 0.000
-#> [2,] 19.230  2.000  6.264 23.561 0.964
-#> [3,]  6.207  0.630  0.911 17.423 1.567
-#> [4,]  2.523  0.255  0.224  7.972 1.913
-#> [5,]  0.856  0.086  0.073  2.717 2.091
+#> [2,] 33.312  3.504 12.616 20.800 0.537
+#> [3,] 15.242  1.587  4.982 26.231 1.017
+#> [4,]  6.835  0.699  1.444 24.644 1.341
+#> [5,]  3.933  0.397  0.457 19.357 1.560
 ```
 
 Run YASSO in a way intended for calibration:
@@ -98,9 +99,9 @@ soil_c_cal <- calibrate_yasso(
 
 # Show the results
 round(soil_c_cal, 3)
-#>        [,1]  [,2]  [,3]   [,4]  [,5]
-#> [1,] 19.230 2.000 6.264 23.561 0.964
-#> [2,]  9.684 0.992 2.150 21.590 1.346
-#> [3,]  6.276 0.637 0.932 17.547 1.562
-#> [4,]  4.512 0.456 0.501 13.712 1.712
+#>        [,1]  [,2]   [,3]   [,4]  [,5]
+#> [1,] 33.312 3.504 12.616 20.800 0.537
+#> [2,] 22.007 2.304  7.864 24.734 0.824
+#> [3,] 15.399 1.604  5.049 26.210 1.013
+#> [4,] 11.249 1.165  3.278 26.367 1.150
 ```

@@ -5,7 +5,7 @@ n_runs <- 4
 time <- c(1.01, 2.03, 3.01, 4.00)
 
 # Weather for each run
-weather_v <- c(9.710, 7.3625, 814.585)
+weather_v <- c(9.710, 814.585, 7.3625)
 weather <- matrix(weather_v, nrow = n_runs, ncol = length(weather_v),
                   byrow = TRUE)
 
