@@ -1,6 +1,6 @@
 Package: Ryassofortran
 Type: Package
-Title: Provides functionality for calling the YASSO15 Fortran release in R
+Title: Provides functionality for calling the YASSO15 Fortran-release in R
 Version: 0.2.0
 Author: Janne Pusa <janne.pusa@fmi.fi>
 Maintainer: Janne Pusa <janne.pusa@fmi.fi>
