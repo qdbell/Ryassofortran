@@ -9,7 +9,7 @@ calibrate_yasso(par, n_runs, time, weather, init, litter, size, leac)
 \arguments{
 \item{par}{A numeric vector of YASSO parameters.}
 
-\item{n_runs}{Input data. Refer to \code{\link{sample_data_run}} for now.}
+\item{n_runs}{Input data. Refer to \code{\link{sample_data_cal}} for now.}
 
 \item{time}{-||-}
 

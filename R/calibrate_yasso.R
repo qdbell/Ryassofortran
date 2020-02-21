@@ -14,7 +14,7 @@
 #' over all the time steps.
 #'
 #' @param par A numeric vector of YASSO parameters.
-#' @param n_runs Input data. Refer to \code{\link{sample_data_run}} for now.
+#' @param n_runs Input data. Refer to \code{\link{sample_data_cal}} for now.
 #' @param time -||-
 #' @param weather -||-
 #' @param init -||-
