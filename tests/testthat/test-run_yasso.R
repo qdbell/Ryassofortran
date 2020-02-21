@@ -20,10 +20,6 @@ test_that("Simulated carbon is correct", {
     leac = sample_data_run$leac
   )
 
-  # Round to a sensible precision
-  real_out <- round(real_out, 3)
-  simulated_out <- round(simulated_out, 3)
-
   # Compare
-  expect_equal(simulated_out, real_out)
+  expect_equal(simulated_out, real_out, tolerance = 1e-4)
 })
