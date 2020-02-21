@@ -29,6 +29,10 @@ environment:
 
     - R_VERSION: devel
 
+matrix:
+  allow_failures:
+    - R_version: devel
+
 build_script:
   - travis-tool.sh install_deps
 
