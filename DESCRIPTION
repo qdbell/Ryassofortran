@@ -8,7 +8,7 @@ Description: Provides convenient functions to call the Fortran90-release of the
     soil carbon model YASSO15 in R. The Fortran-release is up to two orders of 
     magnitude faster than the R-release. The absolute speed increase is not
     necessarily significant while simulating soil carbon, but for model 
-    gcalibration purposes the Fortran-release is superior.
+    calibration purposes the Fortran-release is superior.
 Depends: R (>= 3.4.0)
 License: GPL-3
 Encoding: UTF-8
