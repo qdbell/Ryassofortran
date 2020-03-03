@@ -19,5 +19,5 @@ test_that("Simulated carbon is correct", {
   simulated <- colSums(simulated_out)
 
   # Compare
-  expect_equal(simulated, real)
+  expect_equal(simulated, real, tolerance = 1e-4)
 })
