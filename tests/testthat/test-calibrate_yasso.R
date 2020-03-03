@@ -1,8 +1,7 @@
 test_that("Simulated carbon is correct for calibration", {
 
   # Expected output
-  real <- c(81.9671285079688, 8.57768376541478, 28.8069697546253,
-            98.1102713465062, 3.5240001845443)
+  real <- 220.986053559059
 
   # Simulated output
   simulated_out <- calibrate_yasso(
@@ -16,7 +15,7 @@ test_that("Simulated carbon is correct for calibration", {
     leac = sample_data_cal$leac
   )
 
-  simulated <- colSums(simulated_out)
+  simulated <- sum(simulated_out)
 
   # Compare
   expect_equal(simulated, real, tolerance = 1e-4)

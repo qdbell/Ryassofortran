@@ -1,8 +1,7 @@
 test_that("Simulated carbon is correct", {
 
   # Expected output
-  real <- c(99.8224302943704, 36.6883641040158, 39.7990955184471,
-            101.332316053511, 4.45658067240158)
+  real <- 282.098786642746
 
   # Simulated output
   simulated_out <- run_yasso(
@@ -16,7 +15,7 @@ test_that("Simulated carbon is correct", {
     leac = sample_data_run$leac
   )
 
-  simulated <- colSums(simulated_out)
+  simulated <- sum(simulated_out)
 
   # Compare
   expect_equal(simulated, real, tolerance = 1e-4)
