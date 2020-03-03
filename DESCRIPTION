@@ -9,7 +9,7 @@ Description: Provides convenient functions to call the Fortran90-release of the
     magnitude faster than the R-release. The absolute speed increase is not
     necessarily significant while simulating soil carbon, but for model 
     calibration purposes the Fortran-release is superior.
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.5.3)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
