@@ -15,7 +15,7 @@ litter <- matrix(rep(0, len = n_runs * 4), nrow = n_runs)
 size <- rep(0, 4)
 
 # Leaching for each run
-leac <- rep(0, 4)
+leac <- 0
 
 # Initial carbon for each run
 init_v <- c(40.5, 30.5, 20.3, 10.3, 0)
