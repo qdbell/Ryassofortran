@@ -85,6 +85,12 @@ sample_data_cal$init
 ```
 
 ``` r
+# There is a single leaching value for the entire data set
+sample_data_cal$leac
+#> [1] 0
+```
+
+``` r
 # Run in calibration mode
 soil_c_cal <- calibrate_yasso(
   par = sample_parameters,
