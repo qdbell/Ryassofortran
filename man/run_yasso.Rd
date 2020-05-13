@@ -4,7 +4,7 @@
 \alias{run_yasso}
 \title{Run the YASSO model}
 \usage{
-run_yasso(par, n_runs, time, weather, init, litter, size, leac)
+run_yasso(par, n_runs, time, weather, init, litter, wsize, leac)
 }
 \arguments{
 \item{par}{A numeric vector of YASSO parameters.}
@@ -19,7 +19,7 @@ run_yasso(par, n_runs, time, weather, init, litter, size, leac)
 
 \item{litter}{-||-}
 
-\item{size}{-||-}
+\item{wsize}{-||-}
 
 \item{leac}{-||-}
 }
@@ -48,7 +48,7 @@ soil_c <- run_yasso(
  weather = sample_data_run$weather,
  init = sample_data_run$init,
  litter = sample_data_run$litter,
- size = sample_data_run$size,
+ wsize = sample_data_run$wsize,
  leac = sample_data_run$leac
 )
 }

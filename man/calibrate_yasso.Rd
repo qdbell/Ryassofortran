@@ -4,7 +4,7 @@
 \alias{calibrate_yasso}
 \title{Calibrate the YASSO model}
 \usage{
-calibrate_yasso(par, n_runs, time, weather, init, litter, size, leac)
+calibrate_yasso(par, n_runs, time, weather, init, litter, wsize, leac)
 }
 \arguments{
 \item{par}{A numeric vector of YASSO parameters.}
@@ -19,7 +19,7 @@ calibrate_yasso(par, n_runs, time, weather, init, litter, size, leac)
 
 \item{litter}{-||-}
 
-\item{size}{-||-}
+\item{wsize}{-||-}
 
 \item{leac}{-||-}
 }
@@ -52,7 +52,7 @@ soil_c <- calibrate_yasso(
  weather = sample_data_cal$weather,
  init = sample_data_cal$init,
  litter = sample_data_cal$litter,
- size = sample_data_cal$size,
+ wsize = sample_data_cal$wsize,
  leac = sample_data_cal$leac
 )
 }

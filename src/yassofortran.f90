@@ -1,5 +1,5 @@
 
-subroutine runyasso(par, n_runs, time, weather, litter, size, leac, soil_c)
+subroutine runyasso(par, n_runs, time, weather, litter, wsize, leac, soil_c)
 implicit none
 
 ! Wrapper - make predictions with the YASSO model
@@ -12,7 +12,7 @@ integer, intent(in) :: n_runs
 real(kind=8), intent(in) :: time(n_runs)
 real(kind=8), intent(in) :: weather(n_runs, 3)
 real(kind=8), intent(in) :: litter(n_runs, 5)
-real(kind=8), intent(in) :: size(n_runs)
+real(kind=8), intent(in) :: wsize(n_runs)
 real(kind=8), intent(in) :: leac(n_runs)
 real(kind=8) :: sspred = 0.
 real(kind=8) :: soil_c(n_runs + 1, 5)
@@ -20,12 +20,12 @@ integer :: year
 
 do year = 1, n_runs
     call mod5c(par, time(year), weather(year, :), soil_c(year, :), litter(year, :), &
-        size(year), leac(year), soil_c(year + 1, :), sspred)
+        wsize(year), leac(year), soil_c(year + 1, :), sspred)
 end do
    
 end subroutine runyasso
 
-subroutine calyasso(par, n_runs, time, weather, init, litter, size, leac, soil_c)
+subroutine calyasso(par, n_runs, time, weather, init, litter, wsize, leac, soil_c)
 implicit none
 
 ! Wrapper - use to calibrate the YASSO model (using FMI methods and data)
@@ -39,7 +39,7 @@ real(kind=8), intent(in) :: time(n_runs)
 real(kind=8), intent(in) :: weather(n_runs, 3)
 real(kind=8), intent(in) :: init(n_runs, 5)
 real(kind=8), intent(in) :: litter(n_runs, 5)
-real(kind=8), intent(in) :: size(n_runs)
+real(kind=8), intent(in) :: wsize(n_runs)
 real(kind=8), intent(in) :: leac
 real(kind=8) :: sspred = 0.
 real(kind=8) :: soil_c(n_runs, 5)
@@ -47,7 +47,7 @@ integer :: year
 
 do year = 1, n_runs
     call mod5c(par, time(year), weather(year, :), init(year, :), litter(year, :), &
-        size(year), leac, soil_c(year, :), sspred)
+        wsize(year), leac, soil_c(year, :), sspred)
 end do
    
 end subroutine calyasso

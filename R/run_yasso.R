@@ -17,7 +17,7 @@
 #' @param weather -||-
 #' @param init -||-
 #' @param litter -||-
-#' @param size -||-
+#' @param wsize -||-
 #' @param leac -||-
 #'
 #' @return A matrix containing the initial soil carbon on the first row and
@@ -32,11 +32,11 @@
 #'  weather = sample_data_run$weather,
 #'  init = sample_data_run$init,
 #'  litter = sample_data_run$litter,
-#'  size = sample_data_run$size,
+#'  wsize = sample_data_run$wsize,
 #'  leac = sample_data_run$leac
 #' )
 
-run_yasso <- function(par, n_runs, time, weather, init, litter, size, leac) {
+run_yasso <- function(par, n_runs, time, weather, init, litter, wsize, leac) {
 
   # Typeset parameters
   par <- as.double(par)
@@ -54,7 +54,7 @@ run_yasso <- function(par, n_runs, time, weather, init, litter, size, leac) {
     time = time,
     weather = weather,
     litter = litter,
-    size = size,
+    wsize = wsize,
     leac = leac,
     soil_c = soil_c
   )

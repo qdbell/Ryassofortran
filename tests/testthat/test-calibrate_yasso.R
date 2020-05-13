@@ -16,7 +16,7 @@ test_that("Simulated carbon is correct for calibration", {
     weather = sample_data_cal$weather,
     init = sample_data_cal$init,
     litter = sample_data_cal$litter,
-    size = sample_data_cal$size,
+    wsize = sample_data_cal$wsize,
     leac = sample_data_cal$leac
   )
 

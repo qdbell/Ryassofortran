@@ -18,7 +18,7 @@
 #'     time step (A, W, E, N, H).}
 #'   \item{litter}{\code{matrix} Litter input to the model at each time step (A,
 #'     W, E, N, H).}
-#'   \item{size}{\code{double} A vector with litter size for each time step.}
+#'   \item{wsize}{\code{double} A vector with litter size for each time step.}
 #'   \item{leach}{\code{double} The leaching correction value.}
 #' }
 #'

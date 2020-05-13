@@ -12,7 +12,7 @@ weather <- matrix(weather_v, nrow = n_runs, ncol = length(weather_v), byrow = TR
 litter <- matrix(rep(0, len = n_runs * 4), nrow = n_runs)
 
 # Woody size for each run
-size <- rep(0, 4)
+wsize <- rep(0, 4)
 
 # Leaching for each run
 leac <- 0
@@ -28,7 +28,7 @@ sample_data_cal <- list(
   "weather" = as.matrix(weather),
   "init" = as.matrix(init),
   "litter" = as.matrix(litter),
-  "size" = as.double(size),
+  "wsize" = as.double(wsize),
   "leac" = as.double(leac)
 )
 

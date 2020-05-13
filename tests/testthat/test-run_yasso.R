@@ -16,7 +16,7 @@ test_that("Simulated carbon is correct", {
     weather = sample_data_run$weather,
     init = sample_data_run$init,
     litter = sample_data_run$litter,
-    size = sample_data_run$size,
+    wsize = sample_data_run$wsize,
     leac = sample_data_run$leac
   )
 

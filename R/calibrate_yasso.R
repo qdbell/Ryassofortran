@@ -21,7 +21,7 @@
 #' @param weather -||-
 #' @param init -||-
 #' @param litter -||-
-#' @param size -||-
+#' @param wsize -||-
 #' @param leac -||-
 #'
 #' @return A matrix containing simulated soil carbon. Each row corresponds to a
@@ -36,11 +36,11 @@
 #'  weather = sample_data_cal$weather,
 #'  init = sample_data_cal$init,
 #'  litter = sample_data_cal$litter,
-#'  size = sample_data_cal$size,
+#'  wsize = sample_data_cal$wsize,
 #'  leac = sample_data_cal$leac
 #' )
 
-calibrate_yasso <- function(par, n_runs, time, weather, init, litter, size, leac) {
+calibrate_yasso <- function(par, n_runs, time, weather, init, litter, wsize, leac) {
 
   # Typeset parameters
   par <- as.double(par)
@@ -58,7 +58,7 @@ calibrate_yasso <- function(par, n_runs, time, weather, init, litter, size, leac
     weather = weather,
     init = init,
     litter = litter,
-    size = size,
+    wsize = wsize,
     leac = leac,
     soil_c = soil_c
   )
