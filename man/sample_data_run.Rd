@@ -4,10 +4,14 @@
 \name{sample_data_run}
 \alias{sample_data_run}
 \title{Sample data for running YASSO}
-\format{A list with input data. The data types have to be exactly as
-  described here for \code{run_yasso()} to function:
+\format{
+A list with input data. The data types have to be set with
+  \code{as.<datatype>} exactly as described below for \code{run_yasso()}
+  to function:
 \describe{
-  \item{n_runs}{\code{integer} Number of time steps to run the model over.}
+  \item{n_runs}{\code{integer} Number of time steps to run the model over.
+    All inputs below except \code{init} have to be of length \code{n_runs},
+    i.e. have to be specified at each time step.}
   \item{time}{\code{double} A vector with length of each time step in years.}
   \item{weather}{\code{matrix} Weather data for each time step (mean
     temperarure, precipitation sum, temperature amplitude).}
@@ -18,7 +22,8 @@
   \item{size}{\code{double} A vector with litter size for each time step.}
   \item{leach}{\code{double} A vector with leaching correction factor for
     each time step.}
-}}
+}
+}
 \usage{
 sample_data_run
 }

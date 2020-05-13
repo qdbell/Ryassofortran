@@ -2,12 +2,15 @@
 #'
 #' Sample data for the \code{\link{calibrate_yasso}} function. Identical to the
 #' data in \code{\link{sample_data_run}}, except for \code{init}, which is now a
-#' matrix instead of a vector.
+#' matrix instead of a vector and \code{leac}, which is now a single value.
 #'
-#' @format A list with input data. The data types have to be exactly as
-#'   described here for \code{calibrate_yasso()} to function:
+#' @format A list with input data. The data types have to be set with
+#'   \code{as.<datatype>} exactly as described below for \code{calibrate_yasso()}
+#'   to function:
 #' \describe{
-#'   \item{n_runs}{\code{integer} Number of time steps to run the model over.}
+#'   \item{n_runs}{\code{integer} Number of time steps to run the model over.
+#'     All inputs below except \code{init} and \code{leac} have to be of length
+#'     \code{n_runs}, i.e. have to be specified at each time step.}
 #'   \item{time}{\code{double} A vector with length of each time step in years.}
 #'   \item{weather}{\code{matrix} Weather data for each time step (mean
 #'     temperarure, precipitation sum, temperature amplitude).}
@@ -16,8 +19,7 @@
 #'   \item{litter}{\code{matrix} Litter input to the model at each time step (A,
 #'     W, E, N, H).}
 #'   \item{size}{\code{double} A vector with litter size for each time step.}
-#'   \item{leach}{\code{double} A vector with leaching correction factor for
-#'     each time step.}
+#'   \item{leach}{\code{double} The leaching correction value.}
 #' }
 #'
 #' @references

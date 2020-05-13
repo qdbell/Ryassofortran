@@ -4,7 +4,8 @@
 \name{sample_parameters}
 \alias{sample_parameters}
 \title{Sample parameters}
-\format{A named numeric vector with the following contents:
+\format{
+A named numeric vector with the following contents:
 \describe{
 \item{aA, aW, aE, aN}{Decomposition rate of each AWEN pool}
 \item{pXY}{Relative mass flow between each pair of pools X and Y}
@@ -19,7 +20,8 @@
 \item{pH}{Decomposition rate of the H pool}
 \item{th1, th2, r}{Woody size dependence}
 
-}}
+}
+}
 \usage{
 sample_parameters
 }

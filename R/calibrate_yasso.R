@@ -1,7 +1,9 @@
 #' Calibrate the YASSO model
 #'
 #' \code{calibrate_yasso()} runs the YASSO model in a way intended for model
-#' calibration. To simulate soil carbon, use \code{\link{run_yasso}} instead.
+#' calibration at the Finnish Meteorological Institute. For most users, it is
+#' recommended to instead use \code{\link{run_yasso}} for simulating soil
+#' carbon.
 #'
 #' \code{calibrate_yasso()} wraps the Fortran90-release of the soil carbon model
 #' YASSO15 into a simple R-function. The function is intended for calibrating
