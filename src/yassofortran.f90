@@ -1,3 +1,19 @@
+! The Yasso15 core code and wrappers, compatible with R
+
+! Copyright (C) <2020> <Finnish Meteorological Institute, Janne Pusa>
+!
+! This program is free software: you can redistribute it and/or modify
+! it under the terms of the GNU General Public License as published by
+! the Free Software Foundation, either version 3 of the License, or
+! (at your option) any later version.
+!
+! This program is distributed in the hope that it will be useful,
+! but WITHOUT ANY WARRANTY; without even the implied warranty of
+! MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+! GNU General Public License for more details.
+!
+! You should have received a copy of the GNU General Public License
+! along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 subroutine runyasso(par, n_runs, time, weather, litter, wsize, leac, soil_c)
 implicit none
@@ -22,7 +38,7 @@ do year = 1, n_runs
     call mod5c(par, time(year), weather(year, :), soil_c(year, :), litter(year, :), &
         wsize(year), leac(year), soil_c(year + 1, :), sspred)
 end do
-   
+
 end subroutine runyasso
 
 subroutine calyasso(par, n_runs, time, weather, init, litter, wsize, leac, soil_c)
@@ -30,7 +46,7 @@ implicit none
 
 ! Wrapper - use to calibrate the YASSO model (using FMI methods and data)
 
-! The initial values are passed as an array, and each run has a given 
+! The initial values are passed as an array, and each run has a given
 ! initial value.
 
 real(kind=8), intent(in) :: par(35)
@@ -49,7 +65,7 @@ do year = 1, n_runs
     call mod5c(par, time(year), weather(year, :), init(year, :), litter(year, :), &
         wsize(year), leac, soil_c(year, :), sspred)
 end do
-   
+
 end subroutine calyasso
 
 
@@ -60,29 +76,29 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
         !********************************************* &
         ! returns the model prediction xt for the given parameters
         ! 1-16 matrix A entries: 4*alpha, 12*p
-    
+
         ! 17-21 Leaching parameters: w1,...,w5 IGNORED IN THIS FUNCTION
-    
+
         ! 22-23 Temperature-dependence parameters for AWE fractions: beta_1, beta_2
-    
+
         ! 24-25 Temperature-dependence parameters for N fraction: beta_N1, beta_N2
-    
+
         ! 26-27 Temperature-dependence parameters for H fraction: beta_H1, beta_H2
-    
+
         ! 28-30 Precipitation-dependence parameters for AWE, N and H fraction: gamma, gamma_N, gamma_H
-    
+
         ! 31-32 Humus decomposition parameters: p_H, alpha_H (Note the order!)
-    
+
         ! 33-35 Woody parameters: theta_1, theta_2, r
-    
+
         REAL (kind=8),DIMENSION(35),INTENT(IN) :: theta ! parameters
         REAL (kind=8),INTENT(IN) :: time,d,leac ! time,size,leaching
         REAL (kind=8),DIMENSION(3),INTENT(IN) :: climate ! climatic conditions
         REAL (kind=8),DIMENSION(5),INTENT(IN) :: init ! initial state
         REAL (kind=8),DIMENSION(5),INTENT(IN) :: b ! infall
         REAL (kind=8),DIMENSION(5),INTENT(OUT) :: xt ! the result i.e. x(t)
-        REAL (kind=8),INTENT(IN) :: steadystate_pred ! set to true if ignore 'time' and compute solution 
-        ! LOGICAL,OPTIONAL,INTENT(IN) :: steadystate_pred ! set to true if ignore 'time' and compute solution 
+        REAL (kind=8),INTENT(IN) :: steadystate_pred ! set to true if ignore 'time' and compute solution
+        ! LOGICAL,OPTIONAL,INTENT(IN) :: steadystate_pred ! set to true if ignore 'time' and compute solution
         ! in steady-state conditions (which sould give equal solution as if time is set large enough)
         REAL (kind=8),DIMENSION(5,5) :: A,At,mexpAt
         INTEGER :: i
@@ -92,23 +108,23 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
         REAL (kind=8),DIMENSION(5) :: z1,z2
         REAL (kind=8),PARAMETER :: tol = 1E-12
         LOGICAL :: ss_pred = .FALSE.
-    
+
         ! IF(PRESENT(steadystate_pred)) THEN
             ! ss_pred = steadystate_pred
         ! ENDIF
         IF(steadystate_pred == 1.) THEN
             ss_pred = .true.
         ENDIF
-    
+
         !#########################################################################
         ! Compute the coefficient matrix A for the differential equation
-    
+
         ! temperature annual cycle approximation
         te(1) = climate(1)+4*climate(3)*(1/SQRT(2.0)-1)/pi
         te(2) = climate(1)-4*climate(3)/SQRT(2.0)/pi
         te(3) = climate(1)+4*climate(3)*(1-1/SQRT(2.0))/pi
         te(4) = climate(1)+4*climate(3)/SQRT(2.0)/pi
-    
+
         tem = 0.0
         temN = 0.0
         temH = 0.0
@@ -117,28 +133,28 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
             temN = temN+EXP(theta(24)*te(i)+theta(25)*te(i)**2.0)/4.0
             temH = temH+EXP(theta(26)*te(i)+theta(27)*te(i)**2.0)/4.0
         END DO
-    
+
         ! Precipitation dependence
         tem = tem*(1.0-EXP(theta(28)*climate(2)/1000.0))
         temN = temN*(1.0-EXP(theta(29)*climate(2)/1000.0))
         temH = temH*(1.0-EXP(theta(30)*climate(2)/1000.0))
-    
+
         ! Size class dependence -- no effect if d == 0.0
         size_dep = MIN(1.0,(1.0+theta(33)*d+theta(34)*d**2.0)**(-ABS(theta(35))))
-    
-        ! check rare case where no decomposition happens for some compartments 
+
+        ! check rare case where no decomposition happens for some compartments
         ! (basically, if no rain)
         IF (tem <= tol) THEN
             xt = init + b*time
             return
         END IF
-    
+
         ! Calculating matrix A (will work ok despite the sign of alphas)
         DO i = 1,3
             A(i,i) = -ABS(theta(i))*tem*size_dep
         END DO
         A(4,4) = -ABS(theta(4))*temN*size_dep
-        
+
         A(1,2) = theta(5)*ABS(A(2,2))
         A(1,3) = theta(6)*ABS(A(3,3))
         A(1,4) = theta(7)*ABS(A(4,4))
@@ -159,15 +175,15 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
         DO i = 1,4
             A(5,i) = theta(31)*ABS(A(i,i)) ! mass flows AWEN -> H (size effect is present here)
         END DO
-    
+
         ! Leaching (no leaching for humus)
         DO i = 1,4
             A(i,i) = A(i,i)+leac*climate(2)/1000.0
         END DO
-    
+
         !#########################################################################
         ! Solve the differential equation x'(t) = A(theta)*x(t) + b, x(0) = init
-    
+
         IF(ss_pred) THEN
             ! Solve DE directly in steady state conditions (time = infinity)
             ! using the formula 0 = x'(t) = A*x + b => x = -A**-1*b
@@ -180,10 +196,10 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
             z2 = MATMUL(mexpAt,z1) - b
             CALL solve(A,z2,xt) ! now it can be assumed A is non-singular
         ENDIF
-    
+
         END SUBROUTINE mod5c
 
-        
+
     !#########################################################################
     ! Functions for solving the diff. equation, adapted for the Yasso case
     SUBROUTINE matrixexp(A,B)
