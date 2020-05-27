@@ -15,7 +15,7 @@
 ! You should have received a copy of the GNU General Public License
 ! along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-subroutine runyasso(par, n_runs, time, weather, litter, wsize, leac, soil_c)
+subroutine runyasso(par, n_runs, time, weather, litter, wsize, leac, soil_c, sspred)
 implicit none
 
 ! Wrapper - make predictions with the YASSO model
@@ -24,13 +24,12 @@ implicit none
 ! of the current run is used as the initial value in the next run.
 
 real(kind=8), intent(in) :: par(35)
-integer, intent(in) :: n_runs
+integer, intent(in) :: n_runs, sspred
 real(kind=8), intent(in) :: time(n_runs)
 real(kind=8), intent(in) :: weather(n_runs, 3)
 real(kind=8), intent(in) :: litter(n_runs, 5)
 real(kind=8), intent(in) :: wsize(n_runs)
 real(kind=8), intent(in) :: leac(n_runs)
-real(kind=8) :: sspred = 0.
 real(kind=8) :: soil_c(n_runs + 1, 5)
 integer :: year
 
@@ -41,7 +40,7 @@ end do
 
 end subroutine runyasso
 
-subroutine calyasso(par, n_runs, time, weather, init, litter, wsize, leac, soil_c)
+subroutine calyasso(par, n_runs, time, weather, init, litter, wsize, leac, soil_c, sspred)
 implicit none
 
 ! Wrapper - use to calibrate the YASSO model (using FMI methods and data)
@@ -50,14 +49,13 @@ implicit none
 ! initial value.
 
 real(kind=8), intent(in) :: par(35)
-integer, intent(in) :: n_runs
+integer, intent(in) :: n_runs, sspred
 real(kind=8), intent(in) :: time(n_runs)
 real(kind=8), intent(in) :: weather(n_runs, 3)
 real(kind=8), intent(in) :: init(n_runs, 5)
 real(kind=8), intent(in) :: litter(n_runs, 5)
 real(kind=8), intent(in) :: wsize(n_runs)
 real(kind=8), intent(in) :: leac
-real(kind=8) :: sspred = 0.
 real(kind=8) :: soil_c(n_runs, 5)
 integer :: year
 
@@ -97,7 +95,7 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
         REAL (kind=8),DIMENSION(5),INTENT(IN) :: init ! initial state
         REAL (kind=8),DIMENSION(5),INTENT(IN) :: b ! infall
         REAL (kind=8),DIMENSION(5),INTENT(OUT) :: xt ! the result i.e. x(t)
-        REAL (kind=8),INTENT(IN) :: steadystate_pred ! set to true if ignore 'time' and compute solution
+        INTEGER, INTENT(IN) :: steadystate_pred
         ! LOGICAL,OPTIONAL,INTENT(IN) :: steadystate_pred ! set to true if ignore 'time' and compute solution
         ! in steady-state conditions (which sould give equal solution as if time is set large enough)
         REAL (kind=8),DIMENSION(5,5) :: A,At,mexpAt
@@ -107,13 +105,15 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
         REAL (kind=8),DIMENSION(5) :: te
         REAL (kind=8),DIMENSION(5) :: z1,z2
         REAL (kind=8),PARAMETER :: tol = 1E-12
-        LOGICAL :: ss_pred = .FALSE.
+        LOGICAL :: ss_pred
 
         ! IF(PRESENT(steadystate_pred)) THEN
             ! ss_pred = steadystate_pred
         ! ENDIF
-        IF(steadystate_pred == 1.) THEN
-            ss_pred = .true.
+        IF(steadystate_pred == 1) THEN
+            ss_pred = .TRUE.
+        ELSE
+            ss_pred = .FALSE.
         ENDIF
 
         !#########################################################################

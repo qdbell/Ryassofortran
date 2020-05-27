@@ -4,7 +4,17 @@
 \alias{calibrate_yasso}
 \title{Calibrate the YASSO model}
 \usage{
-calibrate_yasso(par, n_runs, time, weather, init, litter, wsize, leac)
+calibrate_yasso(
+  par,
+  n_runs,
+  time,
+  weather,
+  init,
+  litter,
+  wsize,
+  leac,
+  sspred = 0L
+)
 }
 \arguments{
 \item{par}{A numeric vector of YASSO parameters.}
@@ -22,6 +32,8 @@ calibrate_yasso(par, n_runs, time, weather, init, litter, wsize, leac)
 \item{wsize}{-||-}
 
 \item{leac}{-||-}
+
+\item{sspred}{Optional integer, should steady state mode be used (1 = yes).}
 }
 \value{
 A matrix containing simulated soil carbon. Each row corresponds to a

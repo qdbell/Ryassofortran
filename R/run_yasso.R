@@ -19,6 +19,7 @@
 #' @param litter -||-
 #' @param wsize -||-
 #' @param leac -||-
+#' @param sspred Optional integer, should steady state mode be used (1 = yes).
 #'
 #' @return A matrix containing the initial soil carbon on the first row and
 #'   simulated soil carbon on the following rows.
@@ -36,7 +37,8 @@
 #'  leac = sample_data_run$leac
 #' )
 
-run_yasso <- function(par, n_runs, time, weather, init, litter, wsize, leac) {
+run_yasso <- function(par, n_runs, time, weather, init, litter, wsize, leac,
+                      sspred = 0L) {
 
   # Typeset parameters
   par <- as.double(par)
@@ -56,7 +58,8 @@ run_yasso <- function(par, n_runs, time, weather, init, litter, wsize, leac) {
     litter = litter,
     wsize = wsize,
     leac = leac,
-    soil_c = soil_c
+    soil_c = soil_c,
+    sspred = sspred
   )
 
   # Return simulated soil carbon

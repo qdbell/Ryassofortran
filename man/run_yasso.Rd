@@ -4,7 +4,7 @@
 \alias{run_yasso}
 \title{Run the YASSO model}
 \usage{
-run_yasso(par, n_runs, time, weather, init, litter, wsize, leac)
+run_yasso(par, n_runs, time, weather, init, litter, wsize, leac, sspred = 0L)
 }
 \arguments{
 \item{par}{A numeric vector of YASSO parameters.}
@@ -22,6 +22,8 @@ run_yasso(par, n_runs, time, weather, init, litter, wsize, leac)
 \item{wsize}{-||-}
 
 \item{leac}{-||-}
+
+\item{sspred}{Optional integer, should steady state mode be used (1 = yes).}
 }
 \value{
 A matrix containing the initial soil carbon on the first row and
