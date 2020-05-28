@@ -12,8 +12,9 @@
 #'     All inputs below except \code{init} and \code{leac} have to be of length
 #'     \code{n_runs}, i.e. have to be specified at each time step.}
 #'   \item{time}{\code{double} A vector with length of each time step in years.}
-#'   \item{weather}{\code{matrix} Weather data for each time step (mean
-#'     temperarure, precipitation sum, temperature amplitude).}
+#'   \item{temp}{\code{matrix} Average temperature of each month in a year.
+#'   Specified for each time step.}
+#'   \item{prec}{\code{double} Annual precipitation sum for each time step.}
 #'   \item{init}{\code{matrix} Initial soil carbon values for each
 #'     time step (A, W, E, N, H).}
 #'   \item{litter}{\code{matrix} Litter input to the model at each time step (A,
