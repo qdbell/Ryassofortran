@@ -8,7 +8,8 @@ calibrate_yasso(
   par,
   n_runs,
   time,
-  weather,
+  temp,
+  prec,
   init,
   litter,
   wsize,
@@ -23,7 +24,9 @@ calibrate_yasso(
 
 \item{time}{-||-}
 
-\item{weather}{-||-}
+\item{temp}{-||-}
+
+\item{prec}{-||-}
 
 \item{init}{-||-}
 
@@ -61,7 +64,8 @@ soil_c <- calibrate_yasso(
  par = sample_parameters,
  n_runs = sample_data_cal$n_runs,
  time = sample_data_cal$time,
- weather = sample_data_cal$weather,
+ temp = sample_data_cal_Tmonthly$temp,
+ prec = sample_data_cal_Tmonthly$prec,
  init = sample_data_cal$init,
  litter = sample_data_cal$litter,
  wsize = sample_data_cal$wsize,

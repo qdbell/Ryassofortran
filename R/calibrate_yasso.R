@@ -18,7 +18,8 @@
 #' @param par A numeric vector of YASSO parameters.
 #' @param n_runs Input data. Refer to \code{\link{sample_data_cal}} for now.
 #' @param time -||-
-#' @param weather -||-
+#' @param temp -||-
+#' @param prec -||-
 #' @param init -||-
 #' @param litter -||-
 #' @param wsize -||-
@@ -35,14 +36,15 @@
 #'  par = sample_parameters,
 #'  n_runs = sample_data_cal$n_runs,
 #'  time = sample_data_cal$time,
-#'  weather = sample_data_cal$weather,
+#'  temp = sample_data_cal_Tmonthly$temp,
+#'  prec = sample_data_cal_Tmonthly$prec,
 #'  init = sample_data_cal$init,
 #'  litter = sample_data_cal$litter,
 #'  wsize = sample_data_cal$wsize,
 #'  leac = sample_data_cal$leac
 #' )
 
-calibrate_yasso <- function(par, n_runs, time, weather, init, litter, wsize,
+calibrate_yasso <- function(par, n_runs, time, temp, prec, init, litter, wsize,
                             leac, sspred = 0L) {
 
   # Typeset parameters
@@ -58,7 +60,8 @@ calibrate_yasso <- function(par, n_runs, time, weather, init, litter, wsize,
     par = par,
     n_runs = n_runs,
     time = time,
-    weather = weather,
+    temp = temp,
+    prec = prec,
     init = init,
     litter = litter,
     wsize = wsize,

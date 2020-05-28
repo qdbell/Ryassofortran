@@ -15,7 +15,7 @@
 ! You should have received a copy of the GNU General Public License
 ! along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-subroutine runyasso(par, n_runs, time, weather, litter, wsize, leac, soil_c, sspred)
+subroutine runyasso(par, n_runs, time, temp, prec, litter, wsize, leac, soil_c, sspred)
 implicit none
 
 ! Wrapper - make predictions with the YASSO model
@@ -26,21 +26,22 @@ implicit none
 real(kind=8), intent(in) :: par(35)
 integer, intent(in) :: n_runs, sspred
 real(kind=8), intent(in) :: time(n_runs)
-real(kind=8), intent(in) :: weather(n_runs, 3)
+real(kind=8), intent(in) :: temp(n_runs, 12)
+real(kind=8), intent(in) :: prec(n_runs)
 real(kind=8), intent(in) :: litter(n_runs, 5)
 real(kind=8), intent(in) :: wsize(n_runs)
 real(kind=8), intent(in) :: leac(n_runs)
 real(kind=8) :: soil_c(n_runs + 1, 5)
-integer :: year
+integer :: n
 
-do year = 1, n_runs
-    call mod5c(par, time(year), weather(year, :), soil_c(year, :), litter(year, :), &
-        wsize(year), leac(year), soil_c(year + 1, :), sspred)
+do n = 1, n_runs
+    call mod5c(par, time(n), temp(n, :), prec(n), soil_c(n, :), litter(n, :), &
+        wsize(n), leac(n), soil_c(n + 1, :), sspred)
 end do
 
 end subroutine runyasso
 
-subroutine calyasso(par, n_runs, time, weather, init, litter, wsize, leac, soil_c, sspred)
+subroutine calyasso(par, n_runs, time, temp, prec, init, litter, wsize, leac, soil_c, sspred)
 implicit none
 
 ! Wrapper - use to calibrate the YASSO model (using FMI methods and data)
@@ -51,23 +52,24 @@ implicit none
 real(kind=8), intent(in) :: par(35)
 integer, intent(in) :: n_runs, sspred
 real(kind=8), intent(in) :: time(n_runs)
-real(kind=8), intent(in) :: weather(n_runs, 3)
+real(kind=8), intent(in) :: temp(n_runs, 12)
+real(kind=8), intent(in) :: prec(n_runs)
 real(kind=8), intent(in) :: init(n_runs, 5)
 real(kind=8), intent(in) :: litter(n_runs, 5)
 real(kind=8), intent(in) :: wsize(n_runs)
 real(kind=8), intent(in) :: leac
 real(kind=8) :: soil_c(n_runs, 5)
-integer :: year
+integer :: n
 
-do year = 1, n_runs
-    call mod5c(par, time(year), weather(year, :), init(year, :), litter(year, :), &
-        wsize(year), leac, soil_c(year, :), sspred)
+do n = 1, n_runs
+    call mod5c(par, time(n), temp(n, :), prec(n), init(n, :), litter(n, :), &
+        wsize(n), leac, soil_c(n, :), sspred)
 end do
 
 end subroutine calyasso
 
 
-SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
+SUBROUTINE mod5c(theta,time,temp,prec,init,b,d,leac,xt,steadystate_pred)
     IMPLICIT NONE
         !********************************************* &
         ! GENERAL DESCRIPTION FOR ALL THE MEASUREMENTS
@@ -91,7 +93,8 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
 
         REAL (kind=8),DIMENSION(35),INTENT(IN) :: theta ! parameters
         REAL (kind=8),INTENT(IN) :: time,d,leac ! time,size,leaching
-        REAL (kind=8),DIMENSION(3),INTENT(IN) :: climate ! climatic conditions
+        REAL (kind=8),DIMENSION(12),INTENT(IN) :: temp ! monthly mean temperatures
+        REAL (kind=8),INTENT(IN) :: prec ! annual precipitation
         REAL (kind=8),DIMENSION(5),INTENT(IN) :: init ! initial state
         REAL (kind=8),DIMENSION(5),INTENT(IN) :: b ! infall
         REAL (kind=8),DIMENSION(5),INTENT(OUT) :: xt ! the result i.e. x(t)
@@ -120,24 +123,30 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
         ! Compute the coefficient matrix A for the differential equation
 
         ! temperature annual cycle approximation
-        te(1) = climate(1)+4*climate(3)*(1/SQRT(2.0)-1)/pi
-        te(2) = climate(1)-4*climate(3)/SQRT(2.0)/pi
-        te(3) = climate(1)+4*climate(3)*(1-1/SQRT(2.0))/pi
-        te(4) = climate(1)+4*climate(3)/SQRT(2.0)/pi
+        ! te(1) = climate(1)+4*climate(3)*(1/SQRT(2.0)-1)/pi
+        ! te(2) = climate(1)-4*climate(3)/SQRT(2.0)/pi
+        ! te(3) = climate(1)+4*climate(3)*(1-1/SQRT(2.0))/pi
+        ! te(4) = climate(1)+4*climate(3)/SQRT(2.0)/pi
 
         tem = 0.0
         temN = 0.0
         temH = 0.0
-        DO i = 1,4 ! Average temperature dependence
-            tem = tem+EXP(theta(22)*te(i)+theta(23)*te(i)**2.0)/4.0 ! Gaussian
-            temN = temN+EXP(theta(24)*te(i)+theta(25)*te(i)**2.0)/4.0
-            temH = temH+EXP(theta(26)*te(i)+theta(27)*te(i)**2.0)/4.0
-        END DO
+        DO i = 1,12 ! Average temperature and precipitation dependence
+            tem = tem+EXP(theta(22)*temp(i)+theta(23)*temp(i)**2.0)
+            temN = temN+EXP(theta(24)*temp(i)+theta(25)*temp(i)**2.0)
+            temH = temH+EXP(theta(26)*temp(i)+theta(27)*temp(i)**2.0)
+         END DO
+
+        ! DO i = 1,4 ! Average temperature dependence
+        !     tem = tem+EXP(theta(22)*te(i)+theta(23)*te(i)**2.0)/4.0 ! Gaussian
+        !     temN = temN+EXP(theta(24)*te(i)+theta(25)*te(i)**2.0)/4.0
+        !     temH = temH+EXP(theta(26)*te(i)+theta(27)*te(i)**2.0)/4.0
+        ! END DO
 
         ! Precipitation dependence
-        tem = tem*(1.0-EXP(theta(28)*climate(2)/1000.0))
-        temN = temN*(1.0-EXP(theta(29)*climate(2)/1000.0))
-        temH = temH*(1.0-EXP(theta(30)*climate(2)/1000.0))
+        tem = tem*(1.0-EXP(theta(28)*prec/1000.0))/12
+        temN = temN*(1.0-EXP(theta(29)*prec/1000.0))/12
+        temH = temH*(1.0-EXP(theta(30)*prec/1000.0))/12
 
         ! Size class dependence -- no effect if d == 0.0
         size_dep = MIN(1.0,(1.0+theta(33)*d+theta(34)*d**2.0)**(-ABS(theta(35))))
@@ -178,7 +187,8 @@ SUBROUTINE mod5c(theta,time,climate,init,b,d,leac,xt,steadystate_pred)
 
         ! Leaching (no leaching for humus)
         DO i = 1,4
-            A(i,i) = A(i,i)+leac*climate(2)/1000.0
+            ! A(i,i) = A(i,i)+leac*climate(2)/1000.0
+            A(i,i) = A(i,i)+leac*prec/1000.0
         END DO
 
         !#########################################################################
