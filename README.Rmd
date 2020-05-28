@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # Ryassofortran
 
 <!-- badges: start -->
-[![Build Status](https://travis-ci.com/jpusa/Ryassofortran.svg?branch=master)](https://travis-ci.com/jpusa/Ryassofortran)
+<!-- [![Build Status](https://travis-ci.com/jpusa/Ryassofortran.svg?branch=master)](https://travis-ci.com/jpusa/Ryassofortran) -->
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jpusa/Ryassofortran?branch=master&svg=true)](https://ci.appveyor.com/project/jpusa/ryassofortran)
 <!-- badges: end -->
 
@@ -62,7 +62,8 @@ soil_c <- run_yasso(
   par = sample_parameters,
   n_runs = sample_data_run$n_runs,
   time = sample_data_run$time,
-  weather = sample_data_run$weather,
+  temp = sample_data_run$temp,
+  prec = sample_data_run$prec,
   init = sample_data_run$init,
   litter = sample_data_run$litter,
   wsize = sample_data_run$wsize,
@@ -91,7 +92,8 @@ soil_c_cal <- calibrate_yasso(
   par = sample_parameters,
   n_runs = sample_data_cal$n_runs,
   time = sample_data_cal$time,
-  weather = sample_data_cal$weather,
+  temp = sample_data_run$temp,
+  prec = sample_data_run$prec,
   init = sample_data_cal$init,
   litter = sample_data_cal$litter,
   wsize = sample_data_cal$wsize,
