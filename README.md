@@ -35,7 +35,7 @@ devtools::install_github("jpusa/Ryassofortran")
 
 ### Requirements
 
-* Installing the package requires R-version of 3.5.0 or higher.
+* Installing the package requires an R-version of 3.5.0 or higher.
 * On Windows systems the installation requires Rtools to be installed.
 
 ## Examples
