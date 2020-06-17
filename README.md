@@ -5,13 +5,6 @@
 
 <!-- badges: start -->
 
-<<<<<<< HEAD
-=======
-<!-- [![Build Status](https://travis-ci.com/jpusa/Ryassofortran.svg?branch=master)](https://travis-ci.com/jpusa/Ryassofortran) -->
-
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/jpusa/Ryassofortran?branch=master&svg=true)](https://ci.appveyor.com/project/jpusa/ryassofortran)
->>>>>>> upstream/master
 <!-- badges: end -->
 
 The goal of Ryassofortran is to provide a convenient way to call the
@@ -36,15 +29,7 @@ with:
 devtools::install_github("YASSOmodel/Ryassofortran")
 ```
 
-### Requirements
-
-<<<<<<< HEAD
-* Installing the package requires an R-version of 3.5.0 or higher.
-* On Windows systems the installation requires Rtools to be installed.
-=======
-* R-version 3.5.0 or higher.
-* On Windows systems, Rtools needs to be installed.
->>>>>>> upstream/master
+On Windows systems the installation requires Rtools to be installed.
 
 ## Examples
 
