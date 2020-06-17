@@ -29,7 +29,10 @@ with:
 devtools::install_github("YASSOmodel/Ryassofortran")
 ```
 
-On Windows systems the installation requires Rtools to be installed.
+### Requirements
+
+  - R-version 3.5.0 or higher.
+  - On Windows systems, Rtools needs to be installed.
 
 ## Examples
 
