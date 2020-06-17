@@ -5,6 +5,13 @@
 
 <!-- badges: start -->
 
+<<<<<<< HEAD
+=======
+<!-- [![Build Status](https://travis-ci.com/jpusa/Ryassofortran.svg?branch=master)](https://travis-ci.com/jpusa/Ryassofortran) -->
+
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/jpusa/Ryassofortran?branch=master&svg=true)](https://ci.appveyor.com/project/jpusa/ryassofortran)
+>>>>>>> upstream/master
 <!-- badges: end -->
 
 The goal of Ryassofortran is to provide a convenient way to call the
@@ -31,8 +38,13 @@ devtools::install_github("YASSOmodel/Ryassofortran")
 
 ### Requirements
 
+<<<<<<< HEAD
 * Installing the package requires an R-version of 3.5.0 or higher.
 * On Windows systems the installation requires Rtools to be installed.
+=======
+* R-version 3.5.0 or higher.
+* On Windows systems, Rtools needs to be installed.
+>>>>>>> upstream/master
 
 ## Examples
 
@@ -54,7 +66,8 @@ soil_c <- run_yasso(
   par = sample_parameters,
   n_runs = sample_data_run$n_runs,
   time = sample_data_run$time,
-  weather = sample_data_run$weather,
+  temp = sample_data_run$temp,
+  prec = sample_data_run$prec,
   init = sample_data_run$init,
   litter = sample_data_run$litter,
   wsize = sample_data_run$wsize,
@@ -65,10 +78,10 @@ soil_c <- run_yasso(
 round(soil_c, 3)
 #>        [,1]   [,2]   [,3]   [,4]  [,5]
 #> [1,] 40.500 30.500 20.300 10.300 0.000
-#> [2,] 33.312  3.504 12.616 20.800 0.537
-#> [3,] 15.242  1.587  4.982 26.231 1.017
-#> [4,]  6.835  0.699  1.444 24.644 1.341
-#> [5,]  3.933  0.397  0.457 19.357 1.560
+#> [2,] 35.218  3.708 13.394 20.001 0.493
+#> [3,] 17.538  1.830  5.922 25.655 0.954
+#> [4,]  8.179  0.840  1.941 25.074 1.287
+#> [5,]  4.606  0.466  0.620 20.482 1.514
 ```
 
 Run YASSO in a way intended for calibration:
@@ -95,7 +108,8 @@ soil_c_cal <- calibrate_yasso(
   par = sample_parameters,
   n_runs = sample_data_cal$n_runs,
   time = sample_data_cal$time,
-  weather = sample_data_cal$weather,
+  temp = sample_data_run$temp,
+  prec = sample_data_run$prec,
   init = sample_data_cal$init,
   litter = sample_data_cal$litter,
   wsize = sample_data_cal$wsize,
@@ -105,8 +119,8 @@ soil_c_cal <- calibrate_yasso(
 # Show the results
 round(soil_c_cal, 3)
 #>        [,1]  [,2]   [,3]   [,4]  [,5]
-#> [1,] 33.312 3.504 12.616 20.800 0.537
-#> [2,] 22.007 2.304  7.864 24.734 0.824
-#> [3,] 15.399 1.604  5.049 26.210 1.013
-#> [4,] 11.249 1.165  3.278 26.367 1.150
+#> [1,] 35.218 3.708 13.394 20.001 0.493
+#> [2,] 24.409 2.558  8.851 23.891 0.764
+#> [3,] 17.702 1.847  5.992 25.624 0.950
+#> [4,] 13.250 1.376  4.084 26.131 1.089
 ```

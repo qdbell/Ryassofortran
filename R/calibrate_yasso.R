@@ -18,11 +18,14 @@
 #' @param par A numeric vector of YASSO parameters.
 #' @param n_runs Input data. Refer to \code{\link{sample_data_cal}} for now.
 #' @param time -||-
-#' @param weather -||-
+#' @param temp -||-
+#' @param prec -||-
 #' @param init -||-
 #' @param litter -||-
 #' @param wsize -||-
 #' @param leac -||-
+#' @param sspred Optional integer, should steady state mode be used (1 = yes).
+#'
 #'
 #' @return A matrix containing simulated soil carbon. Each row corresponds to a
 #'   row in the matrix of initial states provided to the model.
@@ -33,14 +36,16 @@
 #'  par = sample_parameters,
 #'  n_runs = sample_data_cal$n_runs,
 #'  time = sample_data_cal$time,
-#'  weather = sample_data_cal$weather,
+#'  temp = sample_data_cal$temp,
+#'  prec = sample_data_cal$prec,
 #'  init = sample_data_cal$init,
 #'  litter = sample_data_cal$litter,
 #'  wsize = sample_data_cal$wsize,
 #'  leac = sample_data_cal$leac
 #' )
 
-calibrate_yasso <- function(par, n_runs, time, weather, init, litter, wsize, leac) {
+calibrate_yasso <- function(par, n_runs, time, temp, prec, init, litter, wsize,
+                            leac, sspred = 0L) {
 
   # Typeset parameters
   par <- as.double(par)
@@ -55,12 +60,14 @@ calibrate_yasso <- function(par, n_runs, time, weather, init, litter, wsize, lea
     par = par,
     n_runs = n_runs,
     time = time,
-    weather = weather,
+    temp = temp,
+    prec = prec,
     init = init,
     litter = litter,
     wsize = wsize,
     leac = leac,
-    soil_c = soil_c
+    soil_c = soil_c,
+    sspred = sspred
   )
 
   # Return simulated soil carbon
