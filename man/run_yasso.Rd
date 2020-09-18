@@ -38,7 +38,8 @@ W, E, N, H).}
 \item{wsize}{\code{double} Litter size on each time step.}
 
 \item{leac}{\code{double} Leaching correction factor on each time step. Only
-defined for litter bag measurements - describes how much litter falls out of the holes in the bags over time. Usually a calibrated value.}
+defined for litter bag measurements - describes how much litter falls out
+of the holes in the bags over time. Usually a calibrated value.}
 
 \item{sspred}{\code{integer} Defines if steady state mode should be used (1 =
 yes).}
@@ -51,12 +52,18 @@ A matrix containing the initial soil carbon on the first row and
 Run the YASSO model and return simulated soil carbon.
 }
 \details{
-The \code{run_yasso()} function is designed for generic use, such as making
-predictions with YASSO15. The user provides YASSO15 with driver data and
-initial carbon in a vector. The model “rolls” the carbon forward one time
-step at a time using the simulated carbon of the current time step as the
-initial carbon of the next step. The model runs until it has looped over all
-the time steps. See also the sample dataset \code{\link{sample_data_run}}.
+The driver data types have to be set with as.<datatype> exactly as described
+under "Arguments".
+
+The \code{run_yasso()} function is designed for generic
+use, such as making predictions with YASSO15. The user provides YASSO15 with
+driver data and initial carbon in a vector. The model “rolls” the carbon
+forward one time step at a time using the simulated carbon of the current
+time step as the initial carbon of the next step. The model runs until it has
+looped over all the time steps.
+
+See also the sample dataset
+\code{\link{sample_data_run}}.
 }
 \examples{
 soil_c <- run_yasso(
