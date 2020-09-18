@@ -27,7 +27,7 @@ with:
 devtools::install_github("YASSOmodel/Ryassofortran")
 ```
 
-## Usage
+## Introduction
 
 Ryassofortran provides two R-functions: `run_yasso()` and
 `calibrate_yasso()`. These functions call the respective
@@ -136,3 +136,32 @@ round(soil_c_cal, 3)
 #> [3,] 17.702 1.847  5.992 25.624 0.950
 #> [4,] 13.250 1.376  4.084 26.131 1.089
 ```
+
+## How to use
+
+Shape and typecast the driver data into the correct format. Call YASSO
+with the R-function that corresponds to your use case. Examine the
+simulated results.
+
+When first starting out, it is recommended to take a look at the inbuilt
+package documentation:
+
+1.  Load the package in R with `library(Ryassofortran)`.
+
+2.  Open the documentation for the R-functions with `?run_yasso` and
+    `?calibrate_yasso`.
+
+3.  Open the documentation for sample datasets with `?sample_data_run`
+    and `?sample_data_cal`.
+
+4.  Run the examples in the R-functions’ documentation using the sample
+    datasets. Note, that the datasets have distinct shapes and each
+    function only works with the corresponding dataset.
+
+As mentioned above, the types of the function inputs need to be defined
+explicitly in R. The type of each input should be cast with the
+`as.<type>` commands as presented in the sample data documentation. For
+example, the inputs `n_runs`, `time` and `litter` are typecast with
+`as.integer`, `as.double` and `as.matrix`, respectively. See the scripts
+that create the sample data in `Ryassofortran/data-raw/` for a
+demonstration.
