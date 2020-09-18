@@ -127,20 +127,23 @@ SUBROUTINE mod5c(theta,time,temp,prec,init,b,d,leac,xt,steadystate_pred)
         ! te(3) = climate(1)+4*climate(3)*(1-1/SQRT(2.0))/pi
         ! te(4) = climate(1)+4*climate(3)/SQRT(2.0)/pi
 
-        tem = 0.0
-        temN = 0.0
-        temH = 0.0
-        DO i = 1,12 ! Average temperature and precipitation dependence
-            tem = tem+EXP(theta(22)*temp(i)+theta(23)*temp(i)**2.0)
-            temN = temN+EXP(theta(24)*temp(i)+theta(25)*temp(i)**2.0)
-            temH = temH+EXP(theta(26)*temp(i)+theta(27)*temp(i)**2.0)
-         END DO
-
         ! DO i = 1,4 ! Average temperature dependence
         !     tem = tem+EXP(theta(22)*te(i)+theta(23)*te(i)**2.0)/4.0 ! Gaussian
         !     temN = temN+EXP(theta(24)*te(i)+theta(25)*te(i)**2.0)/4.0
         !     temH = temH+EXP(theta(26)*te(i)+theta(27)*te(i)**2.0)/4.0
         ! END DO
+
+        ! Set up climate dependence factors
+        tem = 0.0
+        temN = 0.0
+        temH = 0.0
+
+        ! Monthly temperature dependence
+        DO i = 1,12
+            tem = tem+EXP(theta(22)*temp(i)+theta(23)*temp(i)**2.0)
+            temN = temN+EXP(theta(24)*temp(i)+theta(25)*temp(i)**2.0)
+            temH = temH+EXP(theta(26)*temp(i)+theta(27)*temp(i)**2.0)
+         END DO
 
         ! Precipitation dependence
         tem = tem*(1.0-EXP(theta(28)*prec/1000.0))/12
