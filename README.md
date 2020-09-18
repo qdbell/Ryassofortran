@@ -41,7 +41,8 @@ they work.
 **It is important to explicitly define the data types for the R-function
 inputs.** The Fortran90-wrappers expect certain data types (double or
 integer) for certain variables and the code will crash or silently fail
-if the types are not cast correctly in R.
+if the types are not cast correctly in R. See the in-built data
+documentation `?sample_data_run` and `?sample_data_cal` for details.
 
 The `run_yasso()` function is designed for generic use, such as making
 predictions with YASSO15. The user provides YASSO15 with driver data and

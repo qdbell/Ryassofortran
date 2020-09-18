@@ -39,7 +39,7 @@ devtools::install_github("YASSOmodel/Ryassofortran")
 
 Ryassofortran provides two R-functions: `run_yasso()` and `calibrate_yasso()`. These functions call the respective Fortran90-wrappers `runyasso` and `calyasso`, which in turn call the Fortran90-subroutine `mod5c` containing the YASSO15 model code. In other words, the package makes it possible to use simple R-functions to run a very fast implementation of YASSO15. While both R-functions essentially call the same model code, there are a few distinctive differences in how they work.
 
-**It is important to explicitly define the data types for the R-function inputs.** The Fortran90-wrappers expect certain data types (double or integer) for certain variables and the code will crash or silently fail if the types are not cast correctly in R.
+**It is important to explicitly define the data types for the R-function inputs.** The Fortran90-wrappers expect certain data types (double or integer) for certain variables and the code will crash or silently fail if the types are not cast correctly in R. See the in-built data documentation `?sample_data_run` and `?sample_data_cal` for details.
 
 The `run_yasso()` function is designed for generic use, such as making predictions with YASSO15. The user provides YASSO15 with driver data and initial carbon in a vector. The model "rolls" the carbon forward one time step at a time using the simulated carbon of the current time step as the initial carbon of the next step.
 
