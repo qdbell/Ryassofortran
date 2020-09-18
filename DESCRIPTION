@@ -4,11 +4,9 @@ Title: Provides functionality for calling the YASSO15 Fortran-release in R
 Version: 0.4.0
 Author: Janne Pusa <janne.pusa@fmi.fi>
 Maintainer: Janne Pusa <janne.pusa@fmi.fi>
-Description: Provides convenient functions to call the Fortran90-release of the
-    soil carbon model YASSO15 in R. The Fortran-release is up to two orders of 
-    magnitude faster than the R-release. The absolute speed increase is not
-    necessarily significant while simulating soil carbon, but for model 
-    calibration purposes the Fortran-release is superior.
+Description: Provides convenient R-functions for calling the Fortran90-release of the
+    soil carbon model YASSO15. The Fortran90-release is highly computationally
+    efficient, which makes it ideal for model calibration purposes.
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
