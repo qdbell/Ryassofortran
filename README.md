@@ -34,9 +34,9 @@ Ryassofortran provides two R-functions: `run_yasso()` and
 Fortran90-wrappers `runyasso` and `calyasso`, which in turn call the
 Fortran90-subroutine `mod5c` containing the YASSO15 model code. In other
 words, the package makes it possible to use simple R-functions to run a
-very computationally efficient version of YASSO15. While both
-R-functions essentially call the same model code, there are a few
-distinctive differences in how they work.
+very fast implementation of YASSO15. While both R-functions essentially
+call the same model code, there are a few distinctive differences in how
+they work.
 
 **It is important to explicitly define the data types for the R-function
 inputs.** The Fortran90-wrappers expect certain data types (double or
@@ -88,11 +88,12 @@ round(soil_c, 3)
 The `calibrate_yasso()` function is highly specialized and not intended
 for standard use. It is utilized for model calibration at the Finnish
 Meteorological Institute: In the database used for calibration, there is
-a measured initial state and an observed carbon value at each time step.
-Thus, the initial carbon is passed to the function as a matrix and the
-model uses a pre-defined initial state at each time step. Furthermore,
-the leaching input is a singular value instead of a vector, since every
-calibration dataset has a characteristic leaching.
+a measured initial state corresponding to an observed carbon value at
+each time step. Consequently, the initial carbon is passed to the
+function as a matrix and the model uses a pre-determined initial state
+at each time step. Furthermore, the leaching input is a single value
+instead of a vector, since every calibration dataset has a
+characteristic leaching.
 
 During calibrations, run YASSO with `calibrate_yasso()`:
 
@@ -113,7 +114,7 @@ sample_data_cal$leac
 ```
 
 ``` r
-# Run YASSO as during calibration
+# Run YASSO during a calibration
 soil_c_cal <- calibrate_yasso(
   par = sample_parameters,
   n_runs = sample_data_cal$n_runs,
