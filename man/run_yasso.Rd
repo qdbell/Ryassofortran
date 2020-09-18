@@ -20,9 +20,7 @@ run_yasso(
 \arguments{
 \item{par}{\code{double} A vector containing the YASSO parameters.}
 
-\item{n_runs}{{\code{integer} Number of time steps to run the model over. All
-the other inputs except \code{init} have to be of length \code{n_runs},
-i.e. have to be specified on each time step.}}
+\item{n_runs}{\code{integer} Number of time steps to run the model over.}
 
 \item{time}{\code{double} Length of each time step in years.}
 
@@ -58,7 +56,7 @@ predictions with YASSO15. The user provides YASSO15 with driver data and
 initial carbon in a vector. The model “rolls” the carbon forward one time
 step at a time using the simulated carbon of the current time step as the
 initial carbon of the next step. The model runs until it has looped over all
-the time steps.
+the time steps. See also the sample dataset \code{\link{sample_data_run}}.
 }
 \examples{
 soil_c <- run_yasso(
@@ -72,4 +70,7 @@ soil_c <- run_yasso(
  wsize = sample_data_run$wsize,
  leac = sample_data_run$leac
 )
+}
+\seealso{
+\code{\link{sample_data_run}}
 }

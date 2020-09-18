@@ -7,12 +7,10 @@
 #' initial carbon in a vector. The model “rolls” the carbon forward one time
 #' step at a time using the simulated carbon of the current time step as the
 #' initial carbon of the next step. The model runs until it has looped over all
-#' the time steps.
+#' the time steps. See also the sample dataset \code{\link{sample_data_run}}.
 #'
 #' @param par \code{double} A vector containing the YASSO parameters.
-#' @param n_runs {\code{integer} Number of time steps to run the model over. All
-#'   the other inputs except \code{init} have to be of length \code{n_runs},
-#'   i.e. have to be specified on each time step.}
+#' @param n_runs \code{integer} Number of time steps to run the model over.
 #' @param time \code{double} Length of each time step in years.
 #' @param temp \code{matrix} Average temperature for each month of each modelled
 #'   year.
@@ -30,6 +28,8 @@
 #' @return A matrix containing the initial soil carbon on the first row and
 #'   simulated soil carbon on the following rows.
 #' @export
+#'
+#' @seealso \code{\link{sample_data_run}}
 #'
 #' @examples
 #' soil_c <- run_yasso(
