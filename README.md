@@ -7,19 +7,17 @@
 
 <!-- badges: end -->
 
-The goal of Ryassofortran is to provide a convenient way to call the
-Fortran90-release of the soil carbon model YASSO15 in R.
-
-The Fortran-release of YASSO is up to two orders of magnitude faster
-than the R-release. The absolute speed increase is not necessarily
-significant while simulating soil carbon, but for model calibration
-purposes the Fortran-release is superior.
-
-NOTE: This package is very early in development and is subject to
-changes. Furthermore, the package might be removed and included into a
-more advanced calibration package in the following months.
+The goal of Ryassofortran is to provide convenient R-functions for
+calling the Fortran90-release of the soil carbon model YASSO15. The
+Fortran90-release is highly computationally efficient, which makes it
+ideal for model calibration purposes.
 
 ## Installation
+
+### Requirements
+
+  - R-version 3.5.0 or higher.
+  - On Windows systems, Rtools needs to be installed.
 
 You can install the development version of Ryassofortran from GitHub
 with:
@@ -29,14 +27,29 @@ with:
 devtools::install_github("YASSOmodel/Ryassofortran")
 ```
 
-### Requirements
+## Usage
 
-  - R-version 3.5.0 or higher.
-  - On Windows systems, Rtools needs to be installed.
+Ryassofortran provides two R-functions: `run_yasso()` and
+`calibrate_yasso()`. These functions call the respective
+Fortran90-wrappers `runyasso` and `calyasso`, which in turn call the
+Fortran90-subroutine `mod5c` containing the YASSO15 model code. In other
+words, the package makes it possible to use simple R-functions to run a
+very computationally efficient version of YASSO15. While both
+R-functions essentially call the same model code, there are a few
+distinctive differences in how they work.
 
-## Examples
+**It is important to explicitly define the data types for the R-function
+inputs.** The Fortran90-wrappers expect certain data types (double or
+integer) for certain variables and the code will crash or silently fail
+if the types are not cast correctly in R.
 
-Simulate soil carbon with YASSO:
+The `run_yasso()` function is designed for generic use, such as making
+predictions with YASSO15. The user provides YASSO15 with driver data and
+initial carbon in a vector. The model “rolls” the carbon forward one
+time step at a time using the simulated carbon of the current time step
+as the initial carbon of the next step.
+
+Do soil carbon predictions with `run_yasso()`:
 
 ``` r
 library(Ryassofortran)
@@ -72,7 +85,16 @@ round(soil_c, 3)
 #> [5,]  4.606  0.466  0.620 20.482 1.514
 ```
 
-Run YASSO in a way intended for calibration:
+The `calibrate_yasso()` function is highly specialized and not intended
+for standard use. It is utilized for model calibration at the Finnish
+Meteorological Institute: In the database used for calibration, there is
+a measured initial state and an observed carbon value at each time step.
+Thus, the initial carbon is passed to the function as a matrix and the
+model uses a pre-defined initial state at each time step. Furthermore,
+the leaching input is a singular value instead of a vector, since every
+calibration dataset has a characteristic leaching.
+
+During calibrations, run YASSO with `calibrate_yasso()`:
 
 ``` r
 # The initial carbon is given as a matrix
@@ -91,7 +113,7 @@ sample_data_cal$leac
 ```
 
 ``` r
-# Run in calibration mode
+# Run YASSO as during calibration
 soil_c_cal <- calibrate_yasso(
   par = sample_parameters,
   n_runs = sample_data_cal$n_runs,
