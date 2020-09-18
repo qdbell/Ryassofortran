@@ -18,42 +18,47 @@ run_yasso(
 )
 }
 \arguments{
-\item{par}{A numeric vector of YASSO parameters.}
+\item{par}{\code{double} A vector containing the YASSO parameters.}
 
-\item{n_runs}{Input data. Refer to \code{\link{sample_data_run}} for now.}
+\item{n_runs}{{\code{integer} Number of time steps to run the model over. All
+the other inputs except \code{init} have to be of length \code{n_runs},
+i.e. have to be specified on each time step.}}
 
-\item{time}{-||-}
+\item{time}{\code{double} Length of each time step in years.}
 
-\item{temp}{-||-}
+\item{temp}{\code{matrix} Average temperature for each month of each modelled
+year.}
 
-\item{prec}{-||-}
+\item{prec}{\code{double} Annual precipitation sum of each year.}
 
-\item{init}{-||-}
+\item{init}{\code{double} Initial soil carbon values (A, W, E, N, H) to start
+the simulation with.}
 
-\item{litter}{-||-}
+\item{litter}{\code{matrix} Litter input to the model on each time step (A,
+W, E, N, H).}
 
-\item{wsize}{-||-}
+\item{wsize}{\code{double} Litter size on each time step.}
 
-\item{leac}{-||-}
+\item{leac}{\code{double} Leaching correction factor on each time step. Only
+defined for litter bag measurements - describes how much litter falls out of the holes in the bags over time. Usually a calibrated value.}
 
-\item{sspred}{Optional integer, should steady state mode be used (1 = yes).}
+\item{sspred}{\code{integer} Defines if steady state mode should be used (1 =
+yes).}
 }
 \value{
 A matrix containing the initial soil carbon on the first row and
   simulated soil carbon on the following rows.
 }
 \description{
-\code{run_yasso()} runs the YASSO model and returns simulated soil carbon.
+Run the YASSO model and return simulated soil carbon.
 }
 \details{
-\code{run_yasso()} wraps the Fortran90-release of the soil carbon model
-YASSO15 into a simple R-function. The function is a convenient way to call
-the Fortran-release.
-
-The function provides YASSO with the initial soil carbon values in the vector
-\code{init} and runs the model one time step at a time. The simulated
-carbon of the current time step is used as the initial value of the next time
-step. The model runs until it has looped over all the time steps.
+The \code{run_yasso()} function is designed for generic use, such as making
+predictions with YASSO15. The user provides YASSO15 with driver data and
+initial carbon in a vector. The model “rolls” the carbon forward one time
+step at a time using the simulated carbon of the current time step as the
+initial carbon of the next step. The model runs until it has looped over all
+the time steps.
 }
 \examples{
 soil_c <- run_yasso(
