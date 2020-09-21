@@ -36,7 +36,7 @@
 #'   simulated soil carbon on the following rows.
 #' @export
 #'
-#' @seealso \code{\link{sample_data_run}}
+#' @seealso \code{\link{sample_data_run}}, \code{\link{calibrate_yasso}}
 #'
 #' @examples
 #' soil_c <- run_yasso(

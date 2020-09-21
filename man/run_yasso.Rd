@@ -79,5 +79,5 @@ soil_c <- run_yasso(
 )
 }
 \seealso{
-\code{\link{sample_data_run}}
+\code{\link{sample_data_run}}, \code{\link{calibrate_yasso}}
 }
