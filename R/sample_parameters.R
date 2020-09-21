@@ -13,8 +13,8 @@
 #' \item{g}{Precipitation dependence of the AWE pools}
 #' \item{gN}{Precipitation dependence of the N pool}
 #' \item{gH}{Precipitation dependence of the H pool}
-#' \item{aH}{Relative mass flow to the H pool}
-#' \item{pH}{Decomposition rate of the H pool}
+#' \item{pH}{Relative mass flow to the H pool}
+#' \item{aH}{Decomposition rate of the H pool}
 #' \item{th1, th2, r}{Woody size dependence}
 #'
 #' }
