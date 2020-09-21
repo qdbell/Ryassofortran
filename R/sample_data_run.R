@@ -2,6 +2,8 @@
 #'
 #' Sample data for the \code{\link{run_yasso}} function.
 #'
+#' @seealso \code{\link{run_yasso}}, \code{\link{sample_data_cal}}
+#'
 #' @references
 #'   Järvenpää, M., Repo, A., Akujärvi, A., Kaasalainen, M. & Liski, J. Soil
 #'   carbon model Yasso15 - Bayesian calibration using worldwide litter

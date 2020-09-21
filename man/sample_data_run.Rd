@@ -30,4 +30,7 @@ Järvenpää, M., Repo, A., Akujärvi, A., Kaasalainen, M. & Liski, J. Soil
   Modelling 220 (23):3362-3371.
   (\href{doi:10.1016/j.ecolmodel.2009.05.016}{EcolModel})
 }
+\seealso{
+\code{\link{run_yasso}}, \code{\link{sample_data_cal}}
+}
 \keyword{datasets}

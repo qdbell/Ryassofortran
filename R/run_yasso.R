@@ -20,8 +20,8 @@
 #' @param temp \code{matrix} Average temperature for each month of each modelled
 #'   year.
 #' @param prec \code{double} Annual precipitation sum of each year.
-#' @param init \code{double} Initial soil carbon values (A, W, E, N, H) to start
-#'   the simulation with.
+#' @param init \code{double} Initial soil carbon (A, W, E, N, H) to start the
+#'   simulation with.
 #' @param litter \code{matrix} Litter input to the model on each time step (A,
 #'   W, E, N, H).
 #' @param wsize \code{double} Litter size on each time step.

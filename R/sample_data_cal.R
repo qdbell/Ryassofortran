@@ -4,6 +4,8 @@
 #' data in \code{\link{sample_data_run}}, except for \code{init}, which is now a
 #' matrix instead of a vector and \code{leac}, which is now a single value.
 #'
+#' @seealso \code{\link{calibrate_yasso}}, \code{\link{sample_data_run}}
+#'
 #' @references
 #'   Järvenpää, M., Repo, A., Akujärvi, A., Kaasalainen, M. & Liski, J. Soil
 #'   carbon model Yasso15 - Bayesian calibration using worldwide litter

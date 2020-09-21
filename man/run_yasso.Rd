@@ -29,8 +29,8 @@ year.}
 
 \item{prec}{\code{double} Annual precipitation sum of each year.}
 
-\item{init}{\code{double} Initial soil carbon values (A, W, E, N, H) to start
-the simulation with.}
+\item{init}{\code{double} Initial soil carbon (A, W, E, N, H) to start the
+simulation with.}
 
 \item{litter}{\code{matrix} Litter input to the model on each time step (A,
 W, E, N, H).}
