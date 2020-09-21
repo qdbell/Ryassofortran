@@ -62,7 +62,8 @@ step at a time using the simulated carbon of the current time step as the
 initial carbon of the next step. The model runs until it has looped over all
 the time steps.
 
-See also the sample dataset \code{\link{sample_data_run}}.
+See also the sample dataset \code{\link{sample_data_run}} and the sample
+parameters \code{\link{sample_parameters}}.
 }
 \examples{
 soil_c <- run_yasso(
@@ -78,5 +79,6 @@ soil_c <- run_yasso(
 )
 }
 \seealso{
-\code{\link{sample_data_run}}, \code{\link{calibrate_yasso}}
+\code{\link{sample_data_run}}, \code{\link{calibrate_yasso}},
+  \code{\link{sample_parameters}}
 }

@@ -15,7 +15,8 @@
 #'Furthermore, the leaching input is a single value instead of a vector, since
 #'every calibration dataset has a characteristic leaching.
 #'
-#'See also the sample dataset \code{\link{sample_data_cal}}.
+#'See also the sample dataset \code{\link{sample_data_cal}} and the sample
+#'parameters \code{\link{sample_parameters}}.
 #'
 #'@param par \code{double} A vector containing the YASSO parameters.
 #'@param n_runs \code{integer} Number of time steps to run the model over.
@@ -37,7 +38,8 @@
 #'  corresponds to a row in the matrix of initial states.
 #'@export
 #'
-#'@seealso \code{\link{sample_data_cal}}, \code{\link{run_yasso}}
+#'@seealso \code{\link{sample_data_cal}}, \code{\link{run_yasso}},
+#'  \code{\link{sample_parameters}}
 #'
 #' @examples
 #' soil_c <- calibrate_yasso(

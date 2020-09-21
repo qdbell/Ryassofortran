@@ -12,7 +12,8 @@
 #' initial carbon of the next step. The model runs until it has looped over all
 #' the time steps.
 #'
-#' See also the sample dataset \code{\link{sample_data_run}}.
+#' See also the sample dataset \code{\link{sample_data_run}} and the sample
+#' parameters \code{\link{sample_parameters}}.
 #'
 #' @param par \code{double} A vector containing the YASSO parameters.
 #' @param n_runs \code{integer} Number of time steps to run the model over.
@@ -35,7 +36,8 @@
 #'   simulated soil carbon on the following rows.
 #' @export
 #'
-#' @seealso \code{\link{sample_data_run}}, \code{\link{calibrate_yasso}}
+#' @seealso \code{\link{sample_data_run}}, \code{\link{calibrate_yasso}},
+#'   \code{\link{sample_parameters}}
 #'
 #' @examples
 #' soil_c <- run_yasso(

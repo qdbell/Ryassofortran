@@ -63,7 +63,8 @@ matrix and the model uses a pre-determined initial state at each time step.
 Furthermore, the leaching input is a single value instead of a vector, since
 every calibration dataset has a characteristic leaching.
 
-See also the sample dataset \code{\link{sample_data_cal}}.
+See also the sample dataset \code{\link{sample_data_cal}} and the sample
+parameters \code{\link{sample_parameters}}.
 }
 \examples{
 soil_c <- calibrate_yasso(
@@ -79,5 +80,6 @@ soil_c <- calibrate_yasso(
 )
 }
 \seealso{
-\code{\link{sample_data_cal}}, \code{\link{run_yasso}}
+\code{\link{sample_data_cal}}, \code{\link{run_yasso}},
+ \code{\link{sample_parameters}}
 }
