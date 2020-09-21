@@ -5,15 +5,14 @@
 #' The driver data types have to be set with as.<datatype> exactly as described
 #' under "Arguments".
 #'
-#' The \code{run_yasso()} function is designed for generic
-#' use, such as making predictions with YASSO15. The user provides YASSO15 with
-#' driver data and initial carbon in a vector. The model “rolls” the carbon
-#' forward one time step at a time using the simulated carbon of the current
-#' time step as the initial carbon of the next step. The model runs until it has
-#' looped over all the time steps.
+#' The \code{run_yasso()} function is designed for generic use, such as making
+#' predictions with YASSO15. The user provides YASSO15 with driver data and
+#' initial carbon in a vector. The model “rolls” the carbon forward one time
+#' step at a time using the simulated carbon of the current time step as the
+#' initial carbon of the next step. The model runs until it has looped over all
+#' the time steps.
 #'
-#' See also the sample dataset
-#' \code{\link{sample_data_run}}.
+#' See also the sample dataset \code{\link{sample_data_run}}.
 #'
 #' @param par \code{double} A vector containing the YASSO parameters.
 #' @param n_runs \code{integer} Number of time steps to run the model over.

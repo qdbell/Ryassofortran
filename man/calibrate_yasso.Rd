@@ -18,46 +18,52 @@ calibrate_yasso(
 )
 }
 \arguments{
-\item{par}{A numeric vector of YASSO parameters.}
+\item{par}{\code{double} A vector containing the YASSO parameters.}
 
-\item{n_runs}{Input data. Refer to \code{\link{sample_data_cal}} for now.}
+\item{n_runs}{\code{integer} Number of time steps to run the model over.}
 
-\item{time}{-||-}
+\item{time}{\code{double} Length of each time step in years.}
 
-\item{temp}{-||-}
+\item{temp}{\code{matrix} Average temperature for each month of each modelled
+year.}
 
-\item{prec}{-||-}
+\item{prec}{\code{double} Annual precipitation sum of each year.}
 
-\item{init}{-||-}
+\item{init}{\code{matrix} Initial soil carbon values for each time step (A, W,
+E, N, H).}
 
-\item{litter}{-||-}
+\item{litter}{\code{matrix} Litter input to the model on each time step (A, W,
+E, N, H).}
 
-\item{wsize}{-||-}
+\item{wsize}{\code{double} Litter size on each time step.}
 
-\item{leac}{-||-}
+\item{leac}{\code{double} Leaching correction factor for the current dataset.}
 
-\item{sspred}{Optional integer, should steady state mode be used (1 = yes).}
+\item{sspred}{\code{integer} Defines if steady state mode should be used (1 =
+yes).}
 }
 \value{
-A matrix containing simulated soil carbon. Each row corresponds to a
-  row in the matrix of initial states provided to the model.
+A matrix containing simulated soil carbon. Each simulated row
+ corresponds to a row in the matrix of initial states.
 }
 \description{
-\code{calibrate_yasso()} runs the YASSO model in a way intended for model
-calibration at the Finnish Meteorological Institute. For most users, it is
-recommended to instead use \code{\link{run_yasso}} for simulating soil
-carbon.
+Run the YASSO model in a way intended for model calibration at the Finnish
+Meteorological Institute. For most users, it is recommended to instead use
+\code{\link{run_yasso}} for simulating soil carbon.
 }
 \details{
-\code{calibrate_yasso()} wraps the Fortran90-release of the soil carbon model
-YASSO15 into a simple R-function. The function is intended for calibrating
-the model using the data sets and methods applied at the Finnish
-Meteorological Institute.
+The driver data types have to be set with as.<datatype> exactly as described
+under "Arguments".
 
-The function provides YASSO with the initial soil carbon values in the matrix
-\code{init} and runs the model one time step at a time. The initial value
-of each time step is read from the matrix. The model runs until it has looped
-over all the time steps.
+The calibrate_yasso() function is utilized for model calibration at the
+Finnish Meteorological Institute: In the database used for calibration, there
+is a measured initial state corresponding to an observed carbon value at each
+time step. Consequently, the initial carbon is passed to the function as a
+matrix and the model uses a pre-determined initial state at each time step.
+Furthermore, the leaching input is a single value instead of a vector, since
+every calibration dataset has a characteristic leaching.
+
+See also the sample dataset \code{\link{sample_data_run}}.
 }
 \examples{
 soil_c <- calibrate_yasso(
@@ -71,4 +77,7 @@ soil_c <- calibrate_yasso(
  wsize = sample_data_cal$wsize,
  leac = sample_data_cal$leac
 )
+}
+\seealso{
+\code{\link{sample_data_cal}}, \code{\link{run_yasso}}
 }
