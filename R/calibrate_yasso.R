@@ -15,7 +15,7 @@
 #'Furthermore, the leaching input is a single value instead of a vector, since
 #'every calibration dataset has a characteristic leaching.
 #'
-#'See also the sample dataset \code{\link{sample_data_run}}.
+#'See also the sample dataset \code{\link{sample_data_cal}}.
 #'
 #'@param par \code{double} A vector containing the YASSO parameters.
 #'@param n_runs \code{integer} Number of time steps to run the model over.
