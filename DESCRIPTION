@@ -7,6 +7,7 @@ Maintainer: Quentin Bell <quentin.bell@fmi.fi>
 Description: Provides convenient R-functions for calling the Fortran90-release of the
     soil carbon model YASSO15. The Fortran90-release is highly computationally
     efficient, which makes it ideal for model calibration purposes.
+    This version forked from Janne Pusa's previous work with FMI.
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
