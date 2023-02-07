@@ -2,7 +2,7 @@ Package: Ryassofortran
 Type: Package
 Title: Provides functionality for calling the YASSO15 Fortran-release in R
 Version: 0.4.1
-Author: Quentin Bell <quentin.bell@fmi.fi>
+Author: Janne Pusa <janne.pusa@fmi.fi>
 Maintainer: Quentin Bell <quentin.bell@fmi.fi>
 Description: Provides convenient R-functions for calling the Fortran90-release of the
     soil carbon model YASSO15. The Fortran90-release is highly computationally
