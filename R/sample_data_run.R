@@ -18,8 +18,9 @@
 #'   Tuomi, M., Thum, T., Järvinen, H., Fronzek, S., Berg, B., Harmon, M.,
 #'   Trofymow, J.A., Sevanto, S. & Liski, J. 2009. Leaf litter decomposition -
 #'   Estimates of global variability based on Yasso07 model. Ecological
-#'   Modelling 220 (23):3362-3371.
+#'   Modelling 220 (23): 3362-3371.
 #'   (\href{doi:10.1016/j.ecolmodel.2009.05.016}{EcolModel})
+#'
 #'   Viskari, T., Pusa, J., Fer, I., Repo, A., Vira, J., & Liski, J. Calibrating
 #'   the soil organic carbon model Yasso20 with multiple datasets. Geoscientific
 #'   Model Development 15 (4): 1735-1752.
