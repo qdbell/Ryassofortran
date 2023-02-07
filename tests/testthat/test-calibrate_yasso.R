@@ -45,7 +45,7 @@ test_that("Steady state predictions are correct", {
     temp = sample_data_cal$temp,
     prec = sample_data_cal$prec,
     init = sample_data_cal$init,
-    litter = sample_data_cal$litter + matrix(1:16, nrow = 4),
+    litter = sample_data_cal$litter + matrix(1:20, nrow = 4),
     wsize = sample_data_cal$wsize,
     leac = sample_data_cal$leac,
     sspred = 1L
